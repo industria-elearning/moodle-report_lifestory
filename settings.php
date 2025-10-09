@@ -26,10 +26,14 @@
 defined('MOODLE_INTERNAL') || die();
 
 if ($hassiteconfig) {
-    $settings = new admin_settingpage('report_history_student_ai_settings', new lang_string('pluginname', 'report_history_student_ai'));
+    // Crear una categoría en Administración del sitio > Informes
+    $ADMIN->add('reports', new admin_category('report_history_student_ai_cat',
+        get_string('pluginname', 'report_history_student_ai')));
 
-    // phpcs:ignore Generic.CodeAnalysis.EmptyStatement.DetectedIf
-    if ($ADMIN->fulltree) {
-        // TO-DO: Define actual plugin settings page and add it to the tree - {@link https://docs.moodle.org/dev/Admin_settings}.
-    }
+    // Agregar sublink dentro de esa categoría
+    $ADMIN->add('report_history_student_ai_cat', new admin_externalpage(
+        'report_history_student_ai',
+        get_string('history_student_ai', 'report_history_student_ai'),
+        new moodle_url('/report/history_student_ai/index.php')
+    ));
 }

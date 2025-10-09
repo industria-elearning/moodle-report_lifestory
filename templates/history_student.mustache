@@ -1,0 +1,46 @@
+<form method="get" action="{{selecturl}}" class="mb-3">
+    <label for="userid" class="form-label">{{#str}} user {{/str}}</label>
+    <select name="userid" id="userid" class="form-select d-inline-block w-auto" onchange="this.form.submit()">
+        {{#users}}
+            <option value="{{id}}" {{#selected}}selected{{/selected}}>{{name}}</option>
+        {{/users}}
+    </select>
+</form>
+
+{{^hasuser}}
+<div class="alert alert-info">
+    {{#str}} selectuser, report_history_student_ai {{/str}}
+</div>
+{{/hasuser}}
+
+{{#hasuser}}
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <div class="btn-group">
+        <a href="{{processurl}}?userid={{userid}}&action=feedback"
+           class="btn btn-primary">
+            {{#str}} generatefeedback, report_history_student_ai {{/str}}
+        </a>
+
+        <a href="{{processurl}}?userid={{userid}}&action=csv"
+           class="btn btn-secondary">
+            {{#str}} exportcsv, report_history_student_ai {{/str}}
+        </a>
+    </div>
+</div>
+
+{{#showfeedback}}
+<div class="alert alert-info mb-4">
+    <h5>{{#str}} feedbackfromai, report_history_student_ai {{/str}}</h5>
+    <pre class="bg-light p-3">{{{feedback}}}</pre>
+</div>
+{{/showfeedback}}
+
+{{#courses}}
+<div class="mb-5">
+    <h3 class="mb-2">{{fullname}}</h3>
+    <div class="report-table border rounded p-2 bg-white">
+        {{{reporthtml}}}
+    </div>
+</div>
+{{/courses}}
+{{/hasuser}}

@@ -26,6 +26,6 @@ defined('MOODLE_INTERNAL') || die();
 
 $plugin->component = 'report_history_student_ai';
 $plugin->release = '1.0.0';
-$plugin->version = 2025100700;
+$plugin->version = 2025100701;
 $plugin->requires = 2022112800;
 $plugin->maturity = MATURITY_STABLE;
