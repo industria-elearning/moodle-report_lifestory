@@ -25,7 +25,7 @@
 namespace report_history_student_ai\api;
 
 use aiprovider_datacurso\httpclient\ai_services_api;
-use report_history_student_ai\classes\utils;
+use report_history_student_ai\local\utils;
 
 /**
  * Client to interact with AI services.
@@ -39,7 +39,7 @@ class client {
      * @return array The AI response.
      */
     public static function send_to_ai($payload) {
-        // $payload = utils::normalize_payload($payload);
+        $payload = utils::normalize_payload($payload);
 
         // Example: Create a new AI service client.
         // $client = new ai_services_api();
