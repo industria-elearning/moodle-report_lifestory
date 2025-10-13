@@ -30,7 +30,7 @@ $systemcontext = context_system::instance();
 $PAGE->set_context($systemcontext);
 $PAGE->set_url(new moodle_url('/report/history_student_ai/index.php', ['userid' => $userid, 'id' => $courseid]));
 $PAGE->set_title(get_string('history_student_ai', 'report_history_student_ai'));
-$PAGE->set_heading(get_string('pluginname', 'report_history_student_ai'));
+$PAGE->set_heading(get_string('history_student_ai', 'report_history_student_ai'));
 
 $PAGE->requires->js_call_amd('gradereport_user/user', 'init');
 $PAGE->requires->js_call_amd('report_history_student_ai/togglecategories', 'init');
@@ -40,14 +40,25 @@ echo $OUTPUT->header();
 // =====================================================
 // 1️⃣ Selector de estudiantes
 // =====================================================
-$students = get_users(true, '', true, ['id', 'firstname', 'lastname', 'deleted']);
+$role = $DB->get_record('role', ['shortname' => 'student']); // Obtiene el rol "student"
 $options = [];
-foreach ($students as $u) {
-    if (!$u->deleted) {
-        $options[$u->id] = fullname($u);
+
+if ($role) {
+    // Busca todos los contextos donde ese rol está asignado (nivel curso o superior)
+    $assignments = $DB->get_records('role_assignments', ['roleid' => $role->id]);
+
+    $userids = array_unique(array_column($assignments, 'userid'));
+    list($insql, $inparams) = $DB->get_in_or_equal($userids, SQL_PARAMS_NAMED);
+
+    if (!empty($userids)) {
+        $students = $DB->get_records_select('user', "id $insql AND deleted = 0", $inparams, 'lastname ASC, firstname ASC', 'id, firstname, lastname');
+        foreach ($students as $u) {
+            $options[$u->id] = fullname($u);
+        }
     }
 }
 
+// Convierte a formato para Mustache
 $users = array_map(function ($id, $name) use ($userid) {
     return [
         'id' => $id,
