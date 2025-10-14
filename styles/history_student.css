@@ -1,0 +1,36 @@
+.ai-feedback {
+    white-space: pre-wrap;      /* Permite que el texto haga salto de línea */
+    word-wrap: break-word;      /* Corta palabras largas si es necesario */
+    overflow-x: hidden;         /* Evita la barra horizontal */
+    overflow-y: auto;           /* Solo scroll vertical si se excede */
+    max-height: 400px;          /* Altura máxima opcional, ajusta a gusto */
+    line-height: 1.5;
+    font-size: 1rem;
+}
+
+/* === Loader genérico para botones === */
+.btn-loading {
+    position: relative;
+    pointer-events: none;
+    opacity: 0.85;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem; /* 🔹 espacio entre texto y loader */
+}
+
+.btn-loading::after {
+    content: "";
+    width: 1rem;
+    height: 1rem;
+    border: 2px solid #fff;
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+    flex-shrink: 0;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}

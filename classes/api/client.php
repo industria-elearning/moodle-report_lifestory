@@ -47,8 +47,18 @@ class client {
         // $response = $client->request('POST', '/assign/answer', $payload);
         // Example: Return only the reply.
 
+        // return [
+        //     'reply' => json_encode($payload, JSON_PRETTY_PRINT),
+        //     'meta' => [
+        //         'provider' => 'mock',
+        //         'model' => 'gpt-5-mini',
+        //         'userid' => $payload['student']['id'] ?? null,
+        //     ],
+        // ];
         return [
-            'reply' => json_encode($payload, JSON_PRETTY_PRINT),
+            'reply' => 'Has demostrado un buen progreso y compromiso constante con el curso. Iniciaste con un desempeño adecuado y lograste mejorar tus resultados en las últimas unidades, alcanzando calificaciones destacadas. Esto refleja esfuerzo, responsabilidad y una comprensión sólida de los contenidos.
+
+Te recomiendo continuar practicando con regularidad para reforzar la precisión en los ejercicios y mantener el nivel alcanzado. En general, tu rendimiento es muy bueno y evidencia una evolución positiva a lo largo del curso. ¡Sigue así! 👏',
             'meta' => [
                 'provider' => 'mock',
                 'model' => 'gpt-5-mini',

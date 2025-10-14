@@ -16,11 +16,15 @@
         {{#hasuser}}
         <div class="d-flex align-items-center gap-2 ms-3">
             <a href="{{processurl}}?userid={{userid}}&action=feedback"
-               class="btn btn-primary me-2">
+               class="btn btn-primary me-2"
+               id="btn-feedback-ai"
+               data-loader-text="{{#str}} generatingfeedback, report_history_student_ai {{/str}}">
                 {{#str}} generatefeedback, report_history_student_ai {{/str}}
             </a>
             <a href="{{processurl}}?userid={{userid}}&action=csv"
-               class="btn btn-success">
+               class="btn btn-success"
+               id="btn-csv-export"
+               data-loader-text="{{#str}} exportingcsv, report_history_student_ai {{/str}}">
                 {{#str}} exportcsv, report_history_student_ai {{/str}}
             </a>
         </div>

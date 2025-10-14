@@ -34,14 +34,25 @@ $PAGE->set_heading(get_string('history_student_ai', 'report_history_student_ai')
 
 $PAGE->requires->js_call_amd('gradereport_user/user', 'init');
 $PAGE->requires->js_call_amd('report_history_student_ai/togglecategories', 'init');
+$PAGE->requires->js_call_amd('report_history_student_ai/button_loader', 'init');
+$PAGE->requires->css(new moodle_url('/report/history_student_ai/styles/history_student.css'));
 
 echo $OUTPUT->header();
 
 // =====================================================
-// 1️⃣ Selector de estudiantes
+// 1️⃣ Selector de estudiantes (solo rol estudiante)
 // =====================================================
-$role = $DB->get_record('role', ['shortname' => 'student']); // Obtiene el rol "student"
+$role = $DB->get_record('role', ['shortname' => 'student']); // Rol "student"
 $options = [];
+
+// 1. Agregamos una opción inicial "Seleccionar usuario" traducible
+$selectdefault = [
+    [
+        'id' => 0,
+        'name' => get_string('select', 'report_history_student_ai'),
+        'selected' => ($userid == 0)
+    ]
+];
 
 if ($role) {
     // Busca todos los contextos donde ese rol está asignado (nivel curso o superior)
@@ -66,6 +77,10 @@ $users = array_map(function ($id, $name) use ($userid) {
         'selected' => ($id == $userid)
     ];
 }, array_keys($options), $options);
+
+// 2. Unimos la opción "Seleccionar usuario" al inicio del array
+$users = array_merge($selectdefault, $users);
+
 
 // =====================================================
 // 2️⃣ Historial de calificaciones
@@ -99,7 +114,7 @@ $feedbackhtml = null;
 if ($userid && $action === 'feedback') {
     $payload = utils::build_student_payload($userid);
     $response = client::send_to_ai($payload);
-    $feedbackhtml = '<pre class="bg-light p-3">' . s($response['reply']) . '</pre>';
+    $feedbackhtml = '<pre class="bg-light p-3 ai-feedback">' . s($response['reply']) . '</pre>';
 }
 
 // =====================================================
