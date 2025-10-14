@@ -22,11 +22,12 @@
     }
 }}
 
-<form method="get" action="{{selecturl}}" class="mb-4">
-    <div class="d-flex align-items-center flex-wrap justify-content-between gap-3">
+<form method="get" action="{{selecturl}}" class="mb-4 report_student_life_story_ai-form">
+    <div class="d-flex align-items-center flex-wrap justify-content-between gap-3 report_student_life_story_ai-header">
 
-        <div class="d-flex align-items-center flex-wrap gap-3">
-            <div class="d-flex align-items-center">
+        <!-- 🧩 Sección izquierda -->
+        <div class="d-flex align-items-center flex-wrap gap-3 report_student_life_story_ai-actions">
+            <div class="d-flex align-items-center report_student_life_story_ai-userselect">
                 <label for="userid" class="form-label mb-0 me-2 fw-bold">
                     {{#str}} user {{/str}}:
                 </label>
@@ -40,7 +41,7 @@
             </div>
 
             {{#hasuser}}
-            <div class="d-flex align-items-center gap-2 ms-3">
+            <div class="d-flex align-items-center gap-2 ms-3 report_student_life_story_ai-actionbuttons">
                 <a href="{{processurl}}?userid={{userid}}&action=feedback"
                    class="btn btn-primary me-2"
                    id="btn-feedback-ai"
@@ -57,11 +58,11 @@
             {{/hasuser}}
         </div>
 
+        <!-- 🧩 Sección derecha: logo -->
         {{#hasuser}}
         {{#headerlogo}}
-        <div class="d-flex align-items-center ms-auto">
-            <img src="{{logourl}}" alt="Logo Datacurso"
-                 class="plugin-logo" style="max-height: 38px;">
+        <div class="d-flex align-items-center ms-auto report_student_life_story_ai-logo">
+            <img src="{{logourl}}" alt="Logo Datacurso" class="report_student_life_story_ai-pluginlogo">
         </div>
         {{/headerlogo}}
         {{/hasuser}}
@@ -70,21 +71,21 @@
 </form>
 
 {{^hasuser}}
-<div class="alert alert-info">
+<div class="alert alert-info report_student_life_story_ai-alert">
     {{#str}} selectuser, report_student_life_story_ai {{/str}}
 </div>
 {{/hasuser}}
 
 {{#hasuser}}
     {{#showfeedback}}
-    <div class="alert alert-info mb-4 p-3">
+    <div class="alert alert-info mb-4 p-3 report_student_life_story_ai-feedback">
         <h5 class="mb-3">{{#str}} feedbackfromai, report_student_life_story_ai {{/str}}</h5>
-        <pre class="bg-light p-3 rounded mb-0">{{{feedback}}}</pre>
+        <pre class="bg-light p-3 rounded mb-0 report_student_life_story_ai-feedbackcontent">{{{feedback}}}</pre>
     </div>
     {{/showfeedback}}
 
     {{#courses}}
-    <div class="mb-5">
+    <div class="mb-5 report_student_life_story_ai-course">
         <h4 class="mb-3">{{fullname}}</h4>
         <div class="report-table border rounded p-3 bg-white shadow-sm">
             {{{reporthtml}}}
@@ -92,4 +93,3 @@
     </div>
     {{/courses}}
 {{/hasuser}}
-

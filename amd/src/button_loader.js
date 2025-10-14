@@ -1,13 +1,12 @@
 /**
  * Controlador reutilizable para mostrar un loader y deshabilitar un botón mientras se procesa una acción.
- * Compatible con enlaces <a> o botones <button>.
  */
 export const init = () => {
     const buttons = document.querySelectorAll("[data-loader-text]");
 
     buttons.forEach(button => {
         button.addEventListener("click", e => {
-            if (button.classList.contains("btn-loading")) {
+            if (button.classList.contains('report_student_life_story_ai-btnloading')) {
                 e.preventDefault();
                 return;
             }
@@ -20,7 +19,7 @@ export const init = () => {
             button.dataset.originalText = originalText;
 
             // Mostrar loader
-            button.classList.add("btn-loading");
+            button.classList.add('report_student_life_story_ai-btnloading');
             button.setAttribute("aria-disabled", "true");
             button.style.pointerEvents = "none";
             button.textContent = loaderText;
@@ -36,7 +35,7 @@ export const init = () => {
                 document.body.appendChild(iframe);
 
                 setTimeout(() => {
-                    button.classList.remove("btn-loading");
+                    button.classList.remove('report_student_life_story_ai-btnloading');
                     button.removeAttribute("aria-disabled");
                     button.style.pointerEvents = "";
                     button.textContent = originalText;
