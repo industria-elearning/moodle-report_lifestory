@@ -17,16 +17,16 @@
 /**
  * Code that is executed before the tables and data are dropped during the plugin uninstallation.
  *
- * @package     report_history_student_ai
+ * @package     report_student_life_story_ai
  * @category    upgrade
- * @copyright   2025 Piero Llanos <piero@datacurso.com>
+ * @copyright   2025 Datacurso
  * @license     https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 /**
  * Custom uninstallation procedure.
  */
-function xmldb_report_history_student_ai_uninstall() {
+function xmldb_report_student_life_story_ai_uninstall() {
 
     return true;
 }

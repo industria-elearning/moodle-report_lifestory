@@ -17,19 +17,23 @@
 /**
  * Plugin administration pages are defined here.
  *
- * @package     report_history_student_ai
+ * @package     report_student_life_story_ai
  * @category    admin
- * @copyright   2025 Piero Llanos <piero@datacurso.com>
+ * @copyright   2025 Datacurso
  * @license     https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
 if ($hassiteconfig) {
-    $settings = new admin_settingpage('report_history_student_ai_settings', new lang_string('pluginname', 'report_history_student_ai'));
+    $ADMIN->add('reports', new admin_category(
+        'report_student_life_story_ai_cat',
+        get_string('pluginname', 'report_student_life_story_ai')
+    ));
 
-    // phpcs:ignore Generic.CodeAnalysis.EmptyStatement.DetectedIf
-    if ($ADMIN->fulltree) {
-        // TO-DO: Define actual plugin settings page and add it to the tree - {@link https://docs.moodle.org/dev/Admin_settings}.
-    }
+    $ADMIN->add('report_student_life_story_ai_cat', new admin_externalpage(
+        'report_student_life_story_ai',
+        get_string('student_life_story', 'report_student_life_story_ai'),
+        new moodle_url('/report/student_life_story_ai/index.php')
+    ));
 }

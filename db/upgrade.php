@@ -17,21 +17,20 @@
 /**
  * Plugin upgrade steps are defined here.
  *
- * @package     report_history_student_ai
+ * @package     report_student_life_story_ai
  * @category    upgrade
- * @copyright   2025 Piero Llanos <piero@datacurso.com>
+ * @copyright   2025 Datacurso
  * @license     https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-defined('MOODLE_INTERNAL') || die();
 
 /**
- * Execute report_history_student_ai upgrade from the given old version.
+ * Execute report_student_life_story_ai upgrade from the given old version.
  *
  * @param int $oldversion
  * @return bool
  */
-function xmldb_report_history_student_ai_upgrade($oldversion) {
+function xmldb_report_student_life_story_ai_upgrade($oldversion) {
     global $DB;
 
     $dbman = $DB->get_manager();

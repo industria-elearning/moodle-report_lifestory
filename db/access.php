@@ -15,18 +15,24 @@
 // along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
 
 /**
- * Code to be executed after the plugin's database scheme has been installed is defined here.
+ * Capability definitions for report_student_life_story_ai.
  *
  * @package     report_student_life_story_ai
- * @category    upgrade
+ * @category    access
  * @copyright   2025 Datacurso
  * @license     https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-/**
- * Custom code to be run on installing the plugin.
- */
-function xmldb_report_student_life_story_ai_install() {
+defined('MOODLE_INTERNAL') || die();
 
-    return true;
-}
+$capabilities = [
+    'report/student_life_story_ai:view' => [
+        'riskbitmask' => RISK_PERSONAL,
+        'captype' => 'read',
+        'contextlevel' => CONTEXT_USER,
+        'archetypes' => [
+            'teacher' => CAP_ALLOW,
+            'manager' => CAP_ALLOW,
+        ],
+    ],
+];

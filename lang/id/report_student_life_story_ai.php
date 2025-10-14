@@ -15,18 +15,22 @@
 // along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
 
 /**
- * Code to be executed after the plugin's database scheme has been installed is defined here.
+ * Plugin strings are defined here.
  *
  * @package     report_student_life_story_ai
- * @category    upgrade
+ * @category    string
  * @copyright   2025 Datacurso
  * @license     https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-/**
- * Custom code to be run on installing the plugin.
- */
-function xmldb_report_student_life_story_ai_install() {
+defined('MOODLE_INTERNAL') || die();
 
-    return true;
-}
+$string['exportcsv'] = 'Ekspor ke CSV';
+$string['exportingcsv'] = 'Mengekspor CSV';
+$string['feedbackfromai'] = 'Umpan balik dari AI';
+$string['generatefeedback'] = 'Hasilkan umpan balik dengan AI';
+$string['generatingfeedback'] = 'Menghasilkan umpan balik';
+$string['pluginname'] = 'Kisah Hidup Mahasiswa AI';
+$string['select'] = 'Pilih';
+$string['selectuser'] = 'Silakan pilih pengguna untuk melihat kisah hidupnya';
+$string['student_life_story'] = 'Kisah Hidup Mahasiswa';

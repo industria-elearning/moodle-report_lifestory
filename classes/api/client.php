@@ -15,18 +15,35 @@
 // along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
 
 /**
- * Code to be executed after the plugin's database scheme has been installed is defined here.
+ * Client API for report_student_life_story_ai.
  *
  * @package     report_student_life_story_ai
- * @category    upgrade
  * @copyright   2025 Datacurso
  * @license     https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-/**
- * Custom code to be run on installing the plugin.
- */
-function xmldb_report_student_life_story_ai_install() {
+namespace report_student_life_story_ai\api;
 
-    return true;
+use aiprovider_datacurso\httpclient\ai_services_api;
+use report_student_life_story_ai\local\utils;
+
+/**
+ * Client to interact with AI services.
+ */
+class client {
+    /**
+     * Sends the payload to the AI provider and returns the response.
+     *
+     * @param array $payload The request payload.
+     * @return array The AI response.
+     */
+    public static function send_to_ai($payload) {
+        $payload = utils::normalize_payload($payload);
+
+        $client = new ai_services_api();
+
+        $response = $client->request('POST', '/story/analysis', $payload);
+
+        return $response['reply'];
+    }
 }
