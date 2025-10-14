@@ -132,7 +132,26 @@ $feedbackhtml = null;
 if ($userid && $action === 'feedback') {
     $payload = utils::build_student_payload($userid);
     $response = client::send_to_ai($payload);
-    $feedbackhtml = '<pre class="bg-light p-3 ai-feedback">' . s($response['reply']) . '</pre>';
+
+    $replytext = '';
+
+    if (is_string($response)) {
+        $decoded = json_decode($response, true);
+        if (json_last_error() === JSON_ERROR_NONE && isset($decoded['reply'])) {
+            $replytext = $decoded['reply'];
+        } else {
+            $replytext = $response;
+        }
+    } else if (is_array($response) && isset($response['reply'])) {
+        $replytext = $response['reply'];
+    } else {
+        $replytext = get_string('noresponse', 'report_student_life_story_ai');
+    }
+
+    $feedbackhtml = html_writer::div(
+        format_text($replytext, FORMAT_MARKDOWN),
+        'report_student_life_story_ai-feedbackcontent bg-light p-3 rounded'
+    );
 }
 
 // Render Mustache.
