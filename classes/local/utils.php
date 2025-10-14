@@ -48,13 +48,14 @@ class utils {
      * @return array Student data payload.
      */
     public static function build_student_payload($userid): array {
-        global $DB, $CFG;
+        global $DB, $CFG, $USER;
 
         $user = $DB->get_record('user', ['id' => $userid], '*', MUST_EXIST);
         $courses = \enrol_get_users_courses($userid);
 
         $payload = [
             'site_id' => md5($CFG->wwwroot),
+            'userid' => (string)$USER->id,
             'student_id' => (string)$user->id,
             'student_name' => \fullname($user),
             'courses' => [],

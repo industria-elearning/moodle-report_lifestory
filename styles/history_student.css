@@ -31,13 +31,57 @@
 
 /* ====== Feedback AI ====== */
 .report_student_life_story_ai-feedbackcontent {
-    white-space: pre-wrap;
+    white-space: normal;
     word-wrap: break-word;
-    overflow-x: hidden;
-    overflow-y: auto;
-    max-height: 400px;
-    line-height: 1.5;
-    font-size: 1rem;
+    line-height: 1.6;
+    font-size: 1.05rem;
+    font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    background-color: #f8f9fa;
+    padding: 1.25rem 1.5rem;
+    border-radius: 0.5rem;
+}
+
+/* ====== Ajuste visual de encabezados de Feedback IA ====== */
+.report_student_life_story_ai-feedbackcontent h1 {
+    font-size: 1.6rem;     /* más compacto */
+    margin-top: 1.25rem;
+    margin-bottom: 0.75rem;
+    color: #08415c;
+    font-weight: 700;
+}
+
+.report_student_life_story_ai-feedbackcontent h2 {
+    font-size: 1.4rem;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    color: #08415c;
+    font-weight: 700;
+}
+
+.report_student_life_story_ai-feedbackcontent h3 {
+    font-size: 1.2rem;
+    margin-top: 0.75rem;
+    margin-bottom: 0.5rem;
+    color: #0c5460;
+    font-weight: 600;
+}
+
+.report_student_life_story_ai-feedbackcontent h4 {
+    font-size: 1.1rem;
+    margin-top: 0.75rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #0a3d62;
+}
+
+.report_student_life_story_ai-feedbackcontent p {
+    margin-bottom: 0.75rem;
+}
+
+.report_student_life_story_ai-feedbackcontent ul {
+    margin-top: 0.5rem;
+    margin-bottom: 0.75rem;
+    padding-left: 1.5rem;
 }
 
 /* ====== Loader genérico de botones ====== */
