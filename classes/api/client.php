@@ -31,7 +31,6 @@ use report_student_life_story_ai\local\utils;
  * Client to interact with AI services.
  */
 class client {
-
     /**
      * Sends the payload to the AI provider and returns the response.
      *

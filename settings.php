@@ -26,8 +26,10 @@
 defined('MOODLE_INTERNAL') || die();
 
 if ($hassiteconfig) {
-    $ADMIN->add('reports', new admin_category('report_student_life_story_ai_cat',
-        get_string('pluginname', 'report_student_life_story_ai')));
+    $ADMIN->add('reports', new admin_category(
+        'report_student_life_story_ai_cat',
+        get_string('pluginname', 'report_student_life_story_ai')
+    ));
 
     $ADMIN->add('report_student_life_story_ai_cat', new admin_externalpage(
         'report_student_life_story_ai',

@@ -28,7 +28,6 @@ namespace report_student_life_story_ai\local;
  * Utility functions for report_student_life_story_ai.
  */
 class utils {
-
     /**
      * Cleans and returns safe feedback text from a grade object.
      *

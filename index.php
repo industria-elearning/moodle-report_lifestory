@@ -76,7 +76,7 @@ if ($role) {
     $assignments = $DB->get_records('role_assignments', ['roleid' => $role->id]);
 
     $userids = array_unique(array_column($assignments, 'userid'));
-    list($insql, $inparams) = $DB->get_in_or_equal($userids, SQL_PARAMS_NAMED);
+    [$insql, $inparams] = $DB->get_in_or_equal($userids, SQL_PARAMS_NAMED);
 
     if (!empty($userids)) {
         $students = $DB->get_records_select(
