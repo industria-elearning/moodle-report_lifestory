@@ -136,6 +136,10 @@ if ($userid && $action === 'feedback') {
 }
 
 // Render Mustache.
+$renderer = $PAGE->get_renderer('core');
+$headerlogo = new \report_student_life_story_ai\output\header_logo();
+$logocontext = $headerlogo->export_for_template($renderer);
+
 $templatecontext = [
     'selecturl' => new moodle_url('/report/student_life_story_ai/index.php'),
     'userid' => $userid,
@@ -144,6 +148,7 @@ $templatecontext = [
     'courses' => $coursesdata,
     'feedback' => $feedbackhtml,
     'showfeedback' => !empty($feedbackhtml),
+    'headerlogo' => $logocontext,
 ];
 
 echo $OUTPUT->render_from_template('report_student_life_story_ai/history_student', $templatecontext);

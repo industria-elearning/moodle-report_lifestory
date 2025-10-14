@@ -25,12 +25,12 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$string['exportcsv'] = 'Export to CSV';
-$string['exportingcsv'] = 'Exporting CSV';
-$string['feedbackfromai'] = 'AI Feedback';
-$string['generatefeedback'] = 'Generate AI Feedback';
-$string['generatingfeedback'] = 'Generating feedback';
-$string['pluginname'] = 'Student Life Story AI';
-$string['select'] = 'Select';
-$string['selectuser'] = 'Please select a user to view their life story';
-$string['student_life_story'] = 'Student Life Story';
+$string['exportcsv'] = 'Als CSV exportieren';
+$string['exportingcsv'] = 'CSV wird exportiert';
+$string['feedbackfromai'] = 'KI-Feedback';
+$string['generatefeedback'] = 'KI-Feedback generieren';
+$string['generatingfeedback'] = 'Feedback wird generiert';
+$string['pluginname'] = 'KI-Lebensgeschichte des Studenten';
+$string['select'] = 'Auswählen';
+$string['selectuser'] = 'Bitte wählen Sie einen Benutzer aus, um seine Lebensgeschichte anzuzeigen';
+$string['student_life_story'] = 'Lebensgeschichte des Studenten';
