@@ -22,10 +22,9 @@
     }
 }}
 
-<form method="get" action="{{selecturl}}" class="mb-4 report_student_life_story_ai-form">
+<form method="get" {{#selecturl}}action="{{selecturl}}"{{/selecturl}} class="mb-4 report_student_life_story_ai-form">
     <div class="d-flex align-items-center flex-wrap justify-content-between gap-3 report_student_life_story_ai-header">
 
-        <!-- 🧩 Sección izquierda -->
         <div class="d-flex align-items-center flex-wrap gap-3 report_student_life_story_ai-actions">
             <div class="d-flex align-items-center report_student_life_story_ai-userselect">
                 <label for="userid" class="form-label mb-0 me-2 fw-bold">
@@ -58,7 +57,6 @@
             {{/hasuser}}
         </div>
 
-        <!-- 🧩 Sección derecha: logo -->
         {{#hasuser}}
         {{#headerlogo}}
         <div class="d-flex align-items-center ms-auto report_student_life_story_ai-logo">
