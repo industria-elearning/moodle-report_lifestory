@@ -1,11 +1,40 @@
 <?php
-namespace report_history_student_ai\local;
+// This file is part of Moodle - https://moodle.org/
+//
+// Moodle is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Moodle is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
 
-defined('MOODLE_INTERNAL') || die();
+/**
+ * Plugin administration pages are defined here.
+ *
+ * @package     report_student_life_story_ai
+ * @copyright   2025 Piero Llanos <piero@datacurso.com>
+ * @license     https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
 
+namespace report_student_life_story_ai\local;
+
+/**
+ * Utility functions for report_student_life_story_ai.
+ */
 class utils {
 
-    /** Limpia y devuelve feedback seguro */
+    /**
+     * Cleans and returns safe feedback text from a grade object.
+     *
+     * @param stdClass|null $grade Grade record.
+     * @return string Cleaned feedback text.
+     */
     private static function safe_feedback($grade): string {
         if (!$grade || empty($grade->feedback)) {
             return '';
@@ -13,7 +42,12 @@ class utils {
         return trim(strip_tags((string)$grade->feedback));
     }
 
-    /** Construye el payload con toda la información del estudiante */
+    /**
+     * Builds the payload with all student information.
+     *
+     * @param int $userid Moodle user ID.
+     * @return array Student data payload.
+     */
     public static function build_student_payload($userid): array {
         global $DB, $CFG;
 
@@ -24,32 +58,39 @@ class utils {
             'site_id' => md5($CFG->wwwroot),
             'student_id' => (string)$user->id,
             'student_name' => \fullname($user),
-            'courses' => []
+            'courses' => [],
         ];
 
         foreach ($courses as $course) {
             $coursecontext = \context_course::instance($course->id);
             $sections = [];
 
-            // A. Categorías (secciones)
             $categories = \grade_category::fetch_all(['courseid' => $course->id]);
             $hascategories = false;
 
             if ($categories) {
                 foreach ($categories as $cat) {
-                    if ($cat->is_course_category()) continue;
+                    if ($cat->is_course_category()) {
+                        continue;
+                    }
 
                     $items = \grade_item::fetch_all(['categoryid' => $cat->id]);
                     $categoryitem = \grade_item::fetch(['iteminstance' => $cat->id, 'itemtype' => 'category']);
-                    if (!$items && !$categoryitem) continue;
+                    if (!$items && !$categoryitem) {
+                        continue;
+                    }
 
                     $hascategories = true;
                     $tasks = [];
                     $total = null;
 
                     foreach ($items as $item) {
-                        if ($item->itemtype === 'category') continue;
-                        if (!in_array($item->itemtype, ['mod', 'manual'])) continue;
+                        if ($item->itemtype === 'category') {
+                            continue;
+                        }
+                        if (!in_array($item->itemtype, ['mod', 'manual'])) {
+                            continue;
+                        }
 
                         $grade = \grade_grade::fetch(['itemid' => $item->id, 'userid' => $userid]);
                         $finalgrade = $grade ? floatval($grade->finalgrade) : null;
@@ -74,7 +115,7 @@ class utils {
                             'range' => $range,
                             'percentage' => $percentage,
                             'feedback' => $feedback,
-                            'contribution_to_total' => $contribution
+                            'contribution_to_total' => $contribution,
                         ];
                     }
 
@@ -96,7 +137,7 @@ class utils {
                             'range' => $range,
                             'percentage' => $percentage,
                             'feedback' => $feedback,
-                            'contribution_to_total' => null
+                            'contribution_to_total' => null,
                         ];
                     }
 
@@ -104,20 +145,21 @@ class utils {
                         $sections[] = [
                             'name' => \format_string($cat->get_name(), true, ['context' => $coursecontext]),
                             'tasks' => $tasks,
-                            'total' => $total
+                            'total' => $total,
                         ];
                     }
                 }
             }
 
-            // B. Sin categorías
             if (!$hascategories) {
                 $items = \grade_item::fetch_all(['courseid' => $course->id]);
                 $tasks = [];
                 $total = null;
 
                 foreach ($items as $item) {
-                    if (!in_array($item->itemtype, ['mod', 'manual', 'course'])) continue;
+                    if (!in_array($item->itemtype, ['mod', 'manual', 'course'])) {
+                        continue;
+                    }
 
                     if ($item->itemtype === 'course') {
                         $grade = \grade_grade::fetch(['itemid' => $item->id, 'userid' => $userid]);
@@ -135,7 +177,7 @@ class utils {
                             'range' => $range,
                             'percentage' => $percentage,
                             'feedback' => $feedback,
-                            'contribution_to_total' => null
+                            'contribution_to_total' => null,
                         ];
                         continue;
                     }
@@ -163,7 +205,7 @@ class utils {
                         'range' => $range,
                         'percentage' => $percentage,
                         'feedback' => $feedback,
-                        'contribution_to_total' => $contribution
+                        'contribution_to_total' => $contribution,
                     ];
                 }
 
@@ -171,12 +213,11 @@ class utils {
                     $sections[] = [
                         'name' => $course->fullname,
                         'tasks' => $tasks,
-                        'total' => $total
+                        'total' => $total,
                     ];
                 }
             }
 
-            // C. Total del curso
             $courseitems = \grade_item::fetch_all(['courseid' => $course->id]);
             $coursetotal = null;
 
@@ -198,7 +239,7 @@ class utils {
                             'range' => $range,
                             'percentage' => $percentage,
                             'feedback' => $feedback,
-                            'contribution_to_total' => null
+                            'contribution_to_total' => null,
                         ];
                         break;
                     }
@@ -208,14 +249,19 @@ class utils {
             $payload['courses'][] = [
                 'name' => $course->fullname,
                 'sections' => array_values($sections),
-                'total' => $coursetotal
+                'total' => $coursetotal,
             ];
         }
 
         return $payload;
     }
 
-    /** Exporta el payload a un CSV descargable */
+    /**
+     * Exports the student payload into a downloadable CSV file.
+     *
+     * @param array $payload Student data payload.
+     * @return void
+     */
     public static function export_to_csv(array $payload): void {
         $csv = "Curso,Sección,Actividad,Nota (%),Rango,Feedback\n";
 
@@ -233,7 +279,7 @@ class utils {
                         $task['name'],
                         $task['percentage'] ?? '-',
                         $task['range'] ?? '-',
-                        str_replace('"', '""', $task['feedback'] ?? '')
+                        str_replace('"', '""', $task['feedback'] ?? ''),
                     );
                 }
 
@@ -246,7 +292,7 @@ class utils {
                         $total['name'] ?? 'Total',
                         $total['percentage'] ?? '-',
                         $total['range'] ?? '-',
-                        str_replace('"', '""', $total['feedback'] ?? '')
+                        str_replace('"', '""', $total['feedback'] ?? ''),
                     );
                 }
             }
@@ -260,7 +306,7 @@ class utils {
                     $total['name'] ?? 'Total del curso',
                     $total['percentage'] ?? '-',
                     $total['range'] ?? '-',
-                    str_replace('"', '""', $total['feedback'] ?? '')
+                    str_replace('"', '""', $total['feedback'] ?? ''),
                 );
             }
         }

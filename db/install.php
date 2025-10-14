@@ -17,16 +17,16 @@
 /**
  * Code to be executed after the plugin's database scheme has been installed is defined here.
  *
- * @package     report_history_student_ai
+ * @package     report_student_life_story_ai
  * @category    upgrade
- * @copyright   2025 Piero Llanos <piero@datacurso.com>
+ * @copyright   2025 Datacurso
  * @license     https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 /**
  * Custom code to be run on installing the plugin.
  */
-function xmldb_report_history_student_ai_install() {
+function xmldb_report_student_life_story_ai_install() {
 
     return true;
 }

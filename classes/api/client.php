@@ -15,17 +15,17 @@
 // along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
 
 /**
- * Client API for local_assign_ai.
+ * Client API for report_student_life_story_ai.
  *
- * @package     local_assign_ai
- * @copyright   2025 Piero Llanos <piero@datacurso.com>
+ * @package     report_student_life_story_ai
+ * @copyright   2025 Datacurso
  * @license     https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-namespace report_history_student_ai\api;
+namespace report_student_life_story_ai\api;
 
 use aiprovider_datacurso\httpclient\ai_services_api;
-use report_history_student_ai\local\utils;
+use report_student_life_story_ai\local\utils;
 
 /**
  * Client to interact with AI services.
@@ -41,29 +41,10 @@ class client {
     public static function send_to_ai($payload) {
         $payload = utils::normalize_payload($payload);
 
-        // Example: Create a new AI service client.
-        // $client = new ai_services_api();
-        // Example: Send the request.
-        // $response = $client->request('POST', '/assign/answer', $payload);
-        // Example: Return only the reply.
+        $client = new ai_services_api();
 
-        // return [
-        //     'reply' => json_encode($payload, JSON_PRETTY_PRINT),
-        //     'meta' => [
-        //         'provider' => 'mock',
-        //         'model' => 'gpt-5-mini',
-        //         'userid' => $payload['student']['id'] ?? null,
-        //     ],
-        // ];
-        return [
-            'reply' => 'Has demostrado un buen progreso y compromiso constante con el curso. Iniciaste con un desempeño adecuado y lograste mejorar tus resultados en las últimas unidades, alcanzando calificaciones destacadas. Esto refleja esfuerzo, responsabilidad y una comprensión sólida de los contenidos.
+        $response = $client->request('POST', '/story/analysis', $payload);
 
-Te recomiendo continuar practicando con regularidad para reforzar la precisión en los ejercicios y mantener el nivel alcanzado. En general, tu rendimiento es muy bueno y evidencia una evolución positiva a lo largo del curso. ¡Sigue así! 👏',
-            'meta' => [
-                'provider' => 'mock',
-                'model' => 'gpt-5-mini',
-                'userid' => $payload['student']['id'] ?? null,
-            ],
-        ];
+        return $response['reply'];
     }
 }

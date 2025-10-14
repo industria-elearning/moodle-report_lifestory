@@ -17,23 +17,21 @@
 /**
  * Plugin administration pages are defined here.
  *
- * @package     report_history_student_ai
+ * @package     report_student_life_story_ai
  * @category    admin
- * @copyright   2025 Piero Llanos <piero@datacurso.com>
+ * @copyright   2025 Datacurso
  * @license     https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
 if ($hassiteconfig) {
-    // Crear una categoría en Administración del sitio > Informes
-    $ADMIN->add('reports', new admin_category('report_history_student_ai_cat',
-        get_string('pluginname', 'report_history_student_ai')));
+    $ADMIN->add('reports', new admin_category('report_student_life_story_ai_cat',
+        get_string('pluginname', 'report_student_life_story_ai')));
 
-    // Agregar sublink dentro de esa categoría
-    $ADMIN->add('report_history_student_ai_cat', new admin_externalpage(
-        'report_history_student_ai',
-        get_string('history_student_ai', 'report_history_student_ai'),
-        new moodle_url('/report/history_student_ai/index.php')
+    $ADMIN->add('report_student_life_story_ai_cat', new admin_externalpage(
+        'report_student_life_story_ai',
+        get_string('student_life_story', 'report_student_life_story_ai'),
+        new moodle_url('/report/student_life_story_ai/index.php')
     ));
 }
