@@ -25,12 +25,14 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$string['exportcsv'] = 'Экспорт в CSV';
+$string['clearselection'] = 'Очистить';
+$string['exportcsv'] = 'Экспортировать в CSV';
 $string['exportingcsv'] = 'Экспорт CSV';
-$string['feedbackfromai'] = 'Отзыв от ИИ';
+$string['feedbackfromai'] = 'Обратная связь от ИИ';
 $string['generatefeedback'] = 'Создать отзыв с помощью ИИ';
 $string['generatingfeedback'] = 'Создание отзыва';
 $string['pluginname'] = 'История жизни студента ИИ';
+$string['searchusers'] = 'Поиск пользователей';
 $string['select'] = 'Выбрать';
 $string['selectuser'] = 'Пожалуйста, выберите пользователя, чтобы просмотреть его историю жизни';
 $string['student_life_story'] = 'История жизни студента';

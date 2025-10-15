@@ -25,12 +25,14 @@
 
 defined('MOODLE_INTERNAL') || die();
 
+$string['clearselection'] = 'Löschen';
 $string['exportcsv'] = 'Als CSV exportieren';
 $string['exportingcsv'] = 'CSV wird exportiert';
-$string['feedbackfromai'] = 'KI-Feedback';
-$string['generatefeedback'] = 'KI-Feedback generieren';
+$string['feedbackfromai'] = 'Feedback von KI';
+$string['generatefeedback'] = 'Feedback mit KI generieren';
 $string['generatingfeedback'] = 'Feedback wird generiert';
-$string['pluginname'] = 'KI-Lebensgeschichte des Studenten';
+$string['pluginname'] = 'KI-Lebensgeschichte des Studierenden';
+$string['searchusers'] = 'Benutzer suchen';
 $string['select'] = 'Auswählen';
 $string['selectuser'] = 'Bitte wählen Sie einen Benutzer aus, um seine Lebensgeschichte anzuzeigen';
-$string['student_life_story'] = 'Lebensgeschichte des Studenten';
+$string['student_life_story'] = 'Lebensgeschichte des Studierenden';
