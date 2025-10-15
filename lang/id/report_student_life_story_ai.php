@@ -25,12 +25,14 @@
 
 defined('MOODLE_INTERNAL') || die();
 
+$string['clearselection'] = 'Hapus';
 $string['exportcsv'] = 'Ekspor ke CSV';
 $string['exportingcsv'] = 'Mengekspor CSV';
 $string['feedbackfromai'] = 'Umpan balik dari AI';
 $string['generatefeedback'] = 'Hasilkan umpan balik dengan AI';
 $string['generatingfeedback'] = 'Menghasilkan umpan balik';
-$string['pluginname'] = 'Kisah Hidup Mahasiswa AI';
+$string['pluginname'] = 'Kisah hidup mahasiswa AI';
+$string['searchusers'] = 'Cari pengguna';
 $string['select'] = 'Pilih';
 $string['selectuser'] = 'Silakan pilih pengguna untuk melihat kisah hidupnya';
-$string['student_life_story'] = 'Kisah Hidup Mahasiswa';
+$string['student_life_story'] = 'Kisah hidup mahasiswa';
