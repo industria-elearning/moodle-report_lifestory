@@ -1,44 +1,68 @@
-# History Student AI #
+## Student Life Story AI
 
-TO-DO Describe the plugin shortly here.
+This plugin will help you review your students' life histories and, with the help of artificial intelligence, see their performance.
 
-TO-DO Provide more detailed description here.
+## Pre-requisites
 
-## Installing via uploaded ZIP file ##
+1. Have at least PHP version 8.1 installed on the server.
 
-1. Log in to your Moodle site as an admin and go to _Site administration >
-   Plugins > Install plugins_.
-2. Upload the ZIP file with the plugin code. You should only be prompted to add
-   extra details if your plugin type is not automatically detected.
-3. Check the plugin validation report and finish the installation.
+2. Have Moodle version 4.1.14 or higher, up to version 4.5.
 
-## Installing manually ##
+## Installation via uploaded ZIP file
 
-The plugin can be also installed by putting the contents of this directory to
+1. Log in to your Moodle site as an administrator and go to Site `Administration > Plugins > Install Plugins`.
+2. Upload the ZIP file with the plugin code. You'll only be prompted to add additional details if the plugin type isn't automatically detected.
+3. Check the plugin validation report and complete the installation.
 
-    {your/moodle/dirroot}/report/history_student_ai
+## Manual installation
 
-Afterwards, log in to your Moodle site as an admin and go to _Site administration >
-Notifications_ to complete the installation.
+The plugin can also be installed by placing the contents of this directory in
+
+`{your/moodle/dirroot}/report/student_life_story_ai`
+
+Next, log in to your Moodle site as an administrator and go to Site `Administration > General > Notifications` to complete the installation.
 
 Alternatively, you can run
 
-    $ php admin/cli/upgrade.php
+```bash
+php admin/cli/upgrade.php
+```
 
 to complete the installation from the command line.
 
-## License ##
+## Enter the plugin
 
-2025 Piero Llanos <piero@datacurso.com>
+Enter site administration and then reports.
 
-This program is free software: you can redistribute it and/or modify it under
-the terms of the GNU General Public License as published by the Free Software
-Foundation, either version 3 of the License, or (at your option) any later
-version.
+![Admin](./_docs/images/report_student_life_story_ai_admin.png)
 
-This program is distributed in the hope that it will be useful, but WITHOUT ANY
-WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+## Search student
 
-You should have received a copy of the GNU General Public License along with
-this program.  If not, see <https://www.gnu.org/licenses/>.
+In the field you can write the student's name or email.
+
+![Search](./_docs/images/report_student_life_story_ai_search.png)
+
+## Plugin View
+
+Here, the plugin shows us all the courses the student is enrolled in, a button to generate feedback, and a button to export to CSV.
+
+![Search](./_docs/images/report_student_life_story_ai_search_view.png)
+
+## Button Generate AI Feedback
+
+1. This button is used to send the student's data to the artificial intelligence so that it can give us feedback.
+
+   ![Search](./_docs/images/report_student_life_story_ai_search_feedback.png)
+
+2. This is the view when the feedback has already been generated.
+   
+   ![Search](./_docs/images/report_student_life_story_ai_search_feedback_ai.png)
+
+## Button CSV
+
+This button generates a CSV with the student's data so that the data can be used freely.
+
+![Search](./_docs/images/report_student_life_story_ai_search_csv.png)
+
+
+

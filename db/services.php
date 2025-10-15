@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
 
 /**
- * Plugin version and other meta-data are defined here.
+ * Web service definitions for report_student_life_story_ai.
  *
  * @package     report_student_life_story_ai
  * @copyright   2025 Datacurso
@@ -24,11 +24,13 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->component = 'report_student_life_story_ai';
-$plugin->release = '1.0.0';
-$plugin->version = 2025101300;
-$plugin->requires = 2024100700;
-$plugin->maturity = MATURITY_STABLE;
-$plugin->dependencies = [
-    'aiprovider_datacurso' => 2025100201,
+$functions = [
+    'report_student_life_story_ai_search_students' => [
+        'classname'   => 'report_student_life_story_ai\external\search_students',
+        'methodname'  => 'execute',
+        'description' => 'Search for students in the system',
+        'type'        => 'read',
+        'ajax'        => true,
+        'loginrequired' => true,
+    ],
 ];

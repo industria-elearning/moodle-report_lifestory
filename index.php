@@ -54,55 +54,73 @@ $PAGE->set_heading(get_string('student_life_story', 'report_student_life_story_a
 $PAGE->requires->js_call_amd('gradereport_user/user', 'init');
 $PAGE->requires->js_call_amd('report_student_life_story_ai/togglecategories', 'init');
 $PAGE->requires->js_call_amd('report_student_life_story_ai/button_loader', 'init');
+$PAGE->requires->js_call_amd('report_student_life_story_ai/user_search', 'init', [
+    (new moodle_url('/report/student_life_story_ai/index.php'))->out(false),
+]);
 $PAGE->requires->css(new moodle_url('/report/student_life_story_ai/styles/history_student.css'));
 
 echo $OUTPUT->header();
 
-// Selector de estudiantes (solo rol estudiante).
-$role = $DB->get_record('role', ['shortname' => 'student']); // Rol "student".
-$options = [];
+// Buscar estudiantes según el valor de búsqueda.
+$searchresults = [];
+$selecteduser = null;
 
-// Agrega una opción inicial "Seleccionar usuario" traducible.
-$selectdefault = [
-    [
-        'id' => 0,
-        'name' => get_string('select', 'report_student_life_story_ai'),
-        'selected' => ($userid == 0),
-    ],
-];
+if (!empty($searchvalue)) {
+    $role = $DB->get_record('role', ['shortname' => 'student']);
 
-if ($role) {
-    // Busca todos los contextos donde ese rol está asignado (nivel curso o superior).
-    $assignments = $DB->get_records('role_assignments', ['roleid' => $role->id]);
+    if ($role) {
+        $assignments = $DB->get_records('role_assignments', ['roleid' => $role->id]);
+        $userids = array_unique(array_column($assignments, 'userid'));
 
-    $userids = array_unique(array_column($assignments, 'userid'));
-    [$insql, $inparams] = $DB->get_in_or_equal($userids, SQL_PARAMS_NAMED);
+        if (!empty($userids)) {
+            [$insql, $inparams] = $DB->get_in_or_equal($userids, SQL_PARAMS_NAMED);
 
-    if (!empty($userids)) {
-        $students = $DB->get_records_select(
-            'user',
-            "id $insql AND deleted = 0",
-            $inparams,
-            'lastname ASC, firstname ASC',
-            'id, firstname, lastname'
-        );
-        foreach ($students as $u) {
-            $options[$u->id] = fullname($u);
+            // Búsqueda por nombre, apellido o email.
+            $searchsql = "id $insql AND deleted = 0 AND (
+                " . $DB->sql_like('firstname', ':search1', false) . " OR
+                " . $DB->sql_like('lastname', ':search2', false) . " OR
+                " . $DB->sql_like('email', ':search3', false) . " OR
+                " . $DB->sql_like($DB->sql_fullname(), ':search4', false) . "
+            )";
+
+            $searchparam = '%' . $DB->sql_like_escape($searchvalue) . '%';
+            $inparams['search1'] = $searchparam;
+            $inparams['search2'] = $searchparam;
+            $inparams['search3'] = $searchparam;
+            $inparams['search4'] = $searchparam;
+
+            $students = $DB->get_records_select(
+                'user',
+                $searchsql,
+                $inparams,
+                'lastname ASC, firstname ASC',
+                'id, firstname, lastname, email',
+                0,
+                10,
+            );
+
+            foreach ($students as $student) {
+                $searchresults[] = [
+                    'id' => $student->id,
+                    'fullname' => fullname($student),
+                    'email' => $student->email,
+                ];
+            }
         }
     }
 }
 
-// Convierte a formato para Mustache.
-$users = array_map(function ($id, $name) use ($userid) {
-    return [
-        'id' => $id,
-        'name' => $name,
-        'selected' => ($id == $userid),
-    ];
-}, array_keys($options), $options);
-
-// Une la opción "Seleccionar usuario" al inicio del array.
-$users = array_merge($selectdefault, $users);
+// Obtener información del usuario seleccionado.
+if ($userid) {
+    $selecteduser = $DB->get_record('user', ['id' => $userid], 'id, firstname, lastname, email');
+    if ($selecteduser) {
+        $selecteduser = [
+            'id' => $selecteduser->id,
+            'fullname' => fullname($selecteduser),
+            'email' => $selecteduser->email,
+        ];
+    }
+}
 
 // Historial de calificaciones.
 $coursesdata = [];
@@ -160,9 +178,12 @@ $headerlogo = new \report_student_life_story_ai\output\header_logo();
 $logocontext = $headerlogo->export_for_template($renderer);
 
 $templatecontext = [
-    'selecturl' => new moodle_url('/report/student_life_story_ai/index.php'),
+    'baseurl' => new moodle_url('/report/student_life_story_ai/index.php'),
     'userid' => $userid,
-    'users' => $users,
+    'searchvalue' => $searchvalue,
+    'searchresults' => $searchresults,
+    'hassearchresults' => !empty($searchresults),
+    'selecteduser' => $selecteduser,
     'hasuser' => (bool)$userid,
     'courses' => $coursesdata,
     'feedback' => $feedbackhtml,
