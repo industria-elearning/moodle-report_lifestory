@@ -22,32 +22,53 @@
     }
 }}
 
-<form method="get" {{#selecturl}}action="{{selecturl}}"{{/selecturl}} class="mb-4 report_student_life_story_ai-form">
+<div class="mb-4 report_student_life_story_ai-form">
     <div class="d-flex align-items-center flex-wrap justify-content-between gap-3 report_student_life_story_ai-header">
 
         <div class="d-flex align-items-center flex-wrap gap-3 report_student_life_story_ai-actions">
-            <div class="d-flex align-items-center report_student_life_story_ai-userselect">
-                <label for="userid" class="form-label mb-0 me-2 fw-bold">
-                    {{#str}} user {{/str}}:
-                </label>
-                <select name="userid" id="userid"
-                        class="form-control d-inline-block w-auto"
-                        onchange="this.form.submit()">
-                    {{#users}}
-                        <option value="{{id}}" {{#selected}}selected{{/selected}}>{{name}}</option>
-                    {{/users}}
-                </select>
+
+            <div id="usersearch-wrapper" class="position-relative" style="min-width: 300px;">
+                {{^selecteduser}}
+                    <form method="get" action="{{baseurl}}" id="usersearchform">
+                        <input type="text"
+                               name="searchvalue"
+                               id="usersearch"
+                               class="form-control pe-4"
+                               placeholder="{{#str}} searchusers, report_student_life_story_ai {{/str}}"
+                               value="{{searchvalue}}"
+                               autocomplete="off">
+
+                        <div id="search-results"
+                             class="position-absolute bg-white border rounded shadow-sm mt-1 w-100 d-none"
+                             style="z-index: 1000; max-height: 300px; overflow-y: auto;">
+                        </div>
+                    </form>
+                {{/selecteduser}}
+
+                {{#selecteduser}}
+                    <div class="d-flex align-items-center">
+                        <input type="text"
+                               class="form-control"
+                               value="{{fullname}}"
+                               readonly>
+                        <a href="{{baseurl}}"
+                           class="ms-2 text-primary text-decoration-underline"
+                           style="white-space: nowrap;">
+                            {{#str}} clearselection, report_student_life_story_ai {{/str}}
+                        </a>
+                    </div>
+                {{/selecteduser}}
             </div>
 
             {{#hasuser}}
             <div class="d-flex align-items-center gap-2 ms-3 report_student_life_story_ai-actionbuttons">
-                <a href="{{processurl}}?userid={{userid}}&action=feedback"
+                <a href="{{baseurl}}?userid={{userid}}&action=feedback"
                    class="btn btn-primary me-2"
                    id="btn-feedback-ai"
                    data-loader-text="{{#str}} generatingfeedback, report_student_life_story_ai {{/str}}">
                     {{#str}} generatefeedback, report_student_life_story_ai {{/str}}
                 </a>
-                <a href="{{processurl}}?userid={{userid}}&action=csv"
+                <a href="{{baseurl}}?userid={{userid}}&action=csv"
                    class="btn btn-success"
                    id="btn-csv-export"
                    data-loader-text="{{#str}} exportingcsv, report_student_life_story_ai {{/str}}">
@@ -64,9 +85,8 @@
         </div>
         {{/headerlogo}}
         {{/hasuser}}
-
     </div>
-</form>
+</div>
 
 {{^hasuser}}
 <div class="alert alert-info report_student_life_story_ai-alert">

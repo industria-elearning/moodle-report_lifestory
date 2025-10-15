@@ -34,3 +34,5 @@ $string['pluginname'] = 'Student Life Story AI';
 $string['select'] = 'Select';
 $string['selectuser'] = 'Please select a user to view their life story';
 $string['student_life_story'] = 'Student Life Story';
+$string['clearselection'] = 'Clear';
+$string['searchusers'] = 'Search users';

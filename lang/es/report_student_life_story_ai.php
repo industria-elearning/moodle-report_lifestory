@@ -34,3 +34,5 @@ $string['pluginname'] = 'Historia de vida del estudiante IA';
 $string['select'] = 'Seleccionar';
 $string['selectuser'] = 'Por favor seleccione un usuario para ver su historia de vida';
 $string['student_life_story'] = 'Historia de vida del estudiante';
+$string['clearselection'] = 'Limpiar';
+$string['searchusers'] = 'Buscar usuarios';
