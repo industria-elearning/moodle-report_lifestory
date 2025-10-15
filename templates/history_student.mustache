@@ -29,7 +29,7 @@
 
             <div id="usersearch-wrapper" class="position-relative" style="min-width: 300px;">
                 {{^selecteduser}}
-                    <form method="get" action="{{baseurl}}" id="usersearchform">
+                    <form method="get" {{#baseurl}}action="{{baseurl}}"{{/baseurl}} id="usersearchform">
                         <input type="text"
                                name="searchvalue"
                                id="usersearch"
