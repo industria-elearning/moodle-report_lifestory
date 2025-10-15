@@ -55,7 +55,7 @@ $PAGE->requires->js_call_amd('gradereport_user/user', 'init');
 $PAGE->requires->js_call_amd('report_student_life_story_ai/togglecategories', 'init');
 $PAGE->requires->js_call_amd('report_student_life_story_ai/button_loader', 'init');
 $PAGE->requires->js_call_amd('report_student_life_story_ai/user_search', 'init', [
-    (new moodle_url('/report/student_life_story_ai/index.php'))->out(false)
+    (new moodle_url('/report/student_life_story_ai/index.php'))->out(false),
 ]);
 $PAGE->requires->css(new moodle_url('/report/student_life_story_ai/styles/history_student.css'));
 
@@ -67,14 +67,14 @@ $selecteduser = null;
 
 if (!empty($searchvalue)) {
     $role = $DB->get_record('role', ['shortname' => 'student']);
-    
+
     if ($role) {
         $assignments = $DB->get_records('role_assignments', ['roleid' => $role->id]);
         $userids = array_unique(array_column($assignments, 'userid'));
-        
+
         if (!empty($userids)) {
             [$insql, $inparams] = $DB->get_in_or_equal($userids, SQL_PARAMS_NAMED);
-            
+
             // Búsqueda por nombre, apellido o email.
             $searchsql = "id $insql AND deleted = 0 AND (
                 " . $DB->sql_like('firstname', ':search1', false) . " OR
@@ -82,13 +82,13 @@ if (!empty($searchvalue)) {
                 " . $DB->sql_like('email', ':search3', false) . " OR
                 " . $DB->sql_like($DB->sql_fullname(), ':search4', false) . "
             )";
-            
+
             $searchparam = '%' . $DB->sql_like_escape($searchvalue) . '%';
             $inparams['search1'] = $searchparam;
             $inparams['search2'] = $searchparam;
             $inparams['search3'] = $searchparam;
             $inparams['search4'] = $searchparam;
-            
+
             $students = $DB->get_records_select(
                 'user',
                 $searchsql,
@@ -96,9 +96,9 @@ if (!empty($searchvalue)) {
                 'lastname ASC, firstname ASC',
                 'id, firstname, lastname, email',
                 0,
-                10 // Límite de resultados
+                10,
             );
-            
+
             foreach ($students as $student) {
                 $searchresults[] = [
                     'id' => $student->id,

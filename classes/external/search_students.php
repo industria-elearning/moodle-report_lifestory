@@ -30,7 +30,6 @@ use core_external\external_multiple_structure;
  * @license     https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class search_students extends external_api {
-
     /**
      * Returns description of method parameters.
      *
@@ -58,39 +57,39 @@ class search_students extends external_api {
         require_login();
 
         $query = trim($params['query']);
-        
+
         if (empty($query)) {
             return ['students' => []];
         }
 
         $role = $DB->get_record('role', ['shortname' => 'student']);
-        
+
         if (!$role) {
             return ['students' => []];
         }
 
         $assignments = $DB->get_records('role_assignments', ['roleid' => $role->id]);
         $userids = array_unique(array_column($assignments, 'userid'));
-        
+
         if (empty($userids)) {
             return ['students' => []];
         }
 
         [$insql, $inparams] = $DB->get_in_or_equal($userids, SQL_PARAMS_NAMED);
-        
+
         $searchsql = "id $insql AND deleted = 0 AND (
             " . $DB->sql_like('firstname', ':search1', false) . " OR
             " . $DB->sql_like('lastname', ':search2', false) . " OR
             " . $DB->sql_like('email', ':search3', false) . " OR
             " . $DB->sql_like($DB->sql_fullname(), ':search4', false) . "
         )";
-        
+
         $searchparam = '%' . $DB->sql_like_escape($query) . '%';
         $inparams['search1'] = $searchparam;
         $inparams['search2'] = $searchparam;
         $inparams['search3'] = $searchparam;
         $inparams['search4'] = $searchparam;
-        
+
         $students = $DB->get_records_select(
             'user',
             $searchsql,
@@ -105,14 +104,14 @@ class search_students extends external_api {
         foreach ($students as $student) {
             $usercontext = \context_user::instance($student->id);
             $profileimageurl = \moodle_url::make_pluginfile_url(
-        $usercontext->id,       // Contexto correcto del usuario.
-        'user',                 // Componente.
-        'icon',                 // Filearea.
-        null,                   // No hay itemid.
-        '/',                    // Path.
-        'f1'                    // Tamaño: f1 (tamaño pequeño estándar).
-    )->out(false);
-            
+                $usercontext->id,
+                'user',
+                'icon',
+                null,
+                '/',
+                'f1'
+            )->out(false);
+
             $results[] = [
                 'id' => $student->id,
                 'fullname' => fullname($student),

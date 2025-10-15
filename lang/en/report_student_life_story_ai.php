@@ -25,14 +25,14 @@
 
 defined('MOODLE_INTERNAL') || die();
 
+$string['clearselection'] = 'Clear';
 $string['exportcsv'] = 'Export to CSV';
 $string['exportingcsv'] = 'Exporting CSV';
 $string['feedbackfromai'] = 'AI Feedback';
 $string['generatefeedback'] = 'Generate AI Feedback';
 $string['generatingfeedback'] = 'Generating feedback';
 $string['pluginname'] = 'Student Life Story AI';
+$string['searchusers'] = 'Search users';
 $string['select'] = 'Select';
 $string['selectuser'] = 'Please select a user to view their life story';
 $string['student_life_story'] = 'Student Life Story';
-$string['clearselection'] = 'Clear';
-$string['searchusers'] = 'Search users';
