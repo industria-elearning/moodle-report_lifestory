@@ -25,7 +25,7 @@ The system combines quantitative data (grades, percentages, progress) with quali
 
 The plugin can also be installed by placing the contents of this directory in
 
-`{your/moodle/dirroot}/report/student_life_story_ai`
+`{your/moodle/dirroot}/report/lifestory`
 
 Next, log in to your Moodle site as an administrator and go to Site `Administration > General > Notifications` to complete the installation.
 
@@ -47,14 +47,14 @@ Site Administration > Reports > Student Life Story AI
 
 From this section, you can search for students, review their complete learning history, generate AI-based feedback, and export structured data for further analysis.
 
-![Admin](./_docs/images/report_student_life_story_ai_admin.png)
+![Admin](./_docs/images/report_lifestory_admin.png)
 
 ## Search student
 
 Use the search field to locate a specific student by name or email address.
 The plugin will instantly display all the courses the student is enrolled in, along with academic data such as grades, progress, and completion rates.
 
-![Search](./_docs/images/report_student_life_story_ai_search.png)
+![Search](./_docs/images/report_lifestory_search.png)
 
 This consolidated view eliminates the need to manually navigate through individual courses and provides a single access point for understanding each student’s academic evolution.
 
@@ -68,7 +68,7 @@ The main interface of the plugin provides a structured summary of each student�
 
 - A CSV Export button that allows users to download all relevant information for offline or institutional reporting.
 
-![Search](./_docs/images/report_student_life_story_ai_search_view.png)
+![Search](./_docs/images/report_lifestory_search_view.png)
 
 Through this view, teachers and coordinators can monitor student performance, compare historical trends, and identify strengths or areas for improvement.
 
@@ -78,15 +78,14 @@ The “Generate AI Feedback” button activates the artificial intelligence engi
 
 1. When pressed, the system collects relevant academic information — such as grades, course completion rates, and participation metrics — and sends it securely to the DataCurso AI Provider for processing.
 
-   ![Search](./_docs/images/report_student_life_story_ai_search_feedback.png)
+   ![Search](./_docs/images/report_lifestory_search_feedback.png)
 
 2. Once the analysis is complete, the plugin displays a clear, structured feedback view, showing the AI-generated text. This narrative describes the student’s academic evolution, highlights strengths and weaknesses, and provides concrete recommendations for improvement.
-   
-   ![Search](./_docs/images/report_student_life_story_ai_search_feedback_ai.png)
+
+   ![Search](./_docs/images/report_lifestory_search_feedback_ai.png)
 
 ## Button CSV
 
 The CSV export button allows administrators and teachers to generate a downloadable file containing all the student’s consolidated data.
 
-![Search](./_docs/images/report_student_life_story_ai_search_csv.png)
-
+![Search](./_docs/images/report_lifestory_search_csv.png)

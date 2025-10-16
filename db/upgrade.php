@@ -17,7 +17,7 @@
 /**
  * Plugin upgrade steps are defined here.
  *
- * @package     report_student_life_story_ai
+ * @package     report_lifestory
  * @category    upgrade
  * @copyright   2025 Datacurso
  * @license     https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
@@ -25,12 +25,12 @@
 
 
 /**
- * Execute report_student_life_story_ai upgrade from the given old version.
+ * Execute report_lifestory upgrade from the given old version.
  *
  * @param int $oldversion
  * @return bool
  */
-function xmldb_report_student_life_story_ai_upgrade($oldversion) {
+function xmldb_report_lifestory_upgrade($oldversion) {
     global $DB;
 
     $dbman = $DB->get_manager();

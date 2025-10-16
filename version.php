@@ -17,14 +17,14 @@
 /**
  * Plugin version and other meta-data are defined here.
  *
- * @package     report_student_life_story_ai
+ * @package     report_lifestory
  * @copyright   2025 Datacurso
  * @license     https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->component = 'report_student_life_story_ai';
+$plugin->component = 'report_lifestory';
 $plugin->release = '1.0.0';
 $plugin->version = 2025101300;
 $plugin->requires = 2024100700;

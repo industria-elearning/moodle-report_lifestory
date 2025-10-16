@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
 
-namespace report_student_life_story_ai\external;
+namespace report_lifestory\external;
 
 use core_external\external_api;
 use core_external\external_function_parameters;
@@ -25,7 +25,7 @@ use core_external\external_multiple_structure;
 /**
  * External function for searching students.
  *
- * @package     report_student_life_story_ai
+ * @package     report_lifestory
  * @copyright   2025 Datacurso
  * @license     https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */

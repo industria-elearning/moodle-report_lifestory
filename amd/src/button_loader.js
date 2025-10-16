@@ -6,7 +6,7 @@ export const init = () => {
 
     buttons.forEach(button => {
         button.addEventListener("click", e => {
-            if (button.classList.contains('report_student_life_story_ai-btnloading')) {
+            if (button.classList.contains('report_lifestory-btnloading')) {
                 e.preventDefault();
                 return;
             }
@@ -19,7 +19,7 @@ export const init = () => {
             button.dataset.originalText = originalText;
 
             // Mostrar loader
-            button.classList.add('report_student_life_story_ai-btnloading');
+            button.classList.add('report_lifestory-btnloading');
             button.setAttribute("aria-disabled", "true");
             button.style.pointerEvents = "none";
             button.textContent = loaderText;
@@ -35,7 +35,7 @@ export const init = () => {
                 document.body.appendChild(iframe);
 
                 setTimeout(() => {
-                    button.classList.remove('report_student_life_story_ai-btnloading');
+                    button.classList.remove('report_lifestory-btnloading');
                     button.removeAttribute("aria-disabled");
                     button.style.pointerEvents = "";
                     button.textContent = originalText;

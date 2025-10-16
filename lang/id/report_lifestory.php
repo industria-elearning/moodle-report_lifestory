@@ -17,7 +17,7 @@
 /**
  * Plugin strings are defined here.
  *
- * @package     report_student_life_story_ai
+ * @package     report_lifestory
  * @category    string
  * @copyright   2025 Datacurso
  * @license     https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
@@ -25,14 +25,14 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$string['clearselection'] = 'Löschen';
-$string['exportcsv'] = 'Als CSV exportieren';
-$string['exportingcsv'] = 'CSV wird exportiert';
-$string['feedbackfromai'] = 'Feedback von KI';
-$string['generatefeedback'] = 'Feedback mit KI generieren';
-$string['generatingfeedback'] = 'Feedback wird generiert';
-$string['pluginname'] = 'KI-Lebensgeschichte des Studierenden';
-$string['searchusers'] = 'Benutzer suchen';
-$string['select'] = 'Auswählen';
-$string['selectuser'] = 'Bitte wählen Sie einen Benutzer aus, um seine Lebensgeschichte anzuzeigen';
-$string['student_life_story'] = 'Lebensgeschichte des Studierenden';
+$string['clearselection'] = 'Hapus';
+$string['exportcsv'] = 'Ekspor ke CSV';
+$string['exportingcsv'] = 'Mengekspor CSV';
+$string['feedbackfromai'] = 'Umpan balik dari AI';
+$string['generatefeedback'] = 'Hasilkan umpan balik dengan AI';
+$string['generatingfeedback'] = 'Menghasilkan umpan balik';
+$string['pluginname'] = 'Kisah hidup mahasiswa AI';
+$string['searchusers'] = 'Cari pengguna';
+$string['select'] = 'Pilih';
+$string['selectuser'] = 'Silakan pilih pengguna untuk melihat kisah hidupnya';
+$string['lifestory'] = 'Kisah hidup mahasiswa';

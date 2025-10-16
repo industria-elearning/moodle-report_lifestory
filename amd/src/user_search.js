@@ -14,9 +14,9 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * User search functionality for student_life_story_ai report.
+ * User search functionality for lifestory report.
  *
- * @module     report_student_life_story_ai/user_search
+ * @module     report_lifestory/user_search
  * @copyright  2025 Datacurso
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -33,7 +33,7 @@ define(['jquery', 'core/ajax', 'core/notification'], function ($, Ajax, Notifica
      */
     const searchStudents = function (query) {
         return Ajax.call([{
-            methodname: 'report_student_life_story_ai_search_students',
+            methodname: 'report_lifestory_search_students',
             args: { query: query }
         }])[0];
     };
