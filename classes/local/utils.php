@@ -17,15 +17,15 @@
 /**
  * Plugin administration pages are defined here.
  *
- * @package     report_student_life_story_ai
- * @copyright   2025 Piero Llanos <piero@datacurso.com>
+ * @package     report_lifestory
+ * @copyright   2025 Datacurso
  * @license     https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-namespace report_student_life_story_ai\local;
+namespace report_lifestory\local;
 
 /**
- * Utility functions for report_student_life_story_ai.
+ * Utility functions for report_lifestory.
  */
 class utils {
     /**

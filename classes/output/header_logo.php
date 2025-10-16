@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
-namespace report_student_life_story_ai\output;
+namespace report_lifestory\output;
 
 use renderable;
 use templatable;
@@ -23,7 +23,7 @@ use renderer_base;
 /**
  * Class header_logo
  *
- * @package    report_student_life_story_ai
+ * @package    report_lifestory
  * @copyright  2025 Datacurso
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -36,7 +36,7 @@ class header_logo implements renderable, templatable {
      */
     public function export_for_template(renderer_base $output): array {
         return [
-            'logourl' => $output->image_url('logodatacurso', 'report_student_life_story_ai')->out(false),
+            'logourl' => $output->image_url('logodatacurso', 'report_lifestory')->out(false),
         ];
     }
 }

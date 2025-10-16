@@ -15,17 +15,17 @@
     along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 }}
 {{!
-    @template report_student_life_story_ai/history_student
+    @template report_lifestory/history_student
 
     Example context (json):
     {
     }
 }}
 
-<div class="mb-4 report_student_life_story_ai-form">
-    <div class="d-flex align-items-center flex-wrap justify-content-between gap-3 report_student_life_story_ai-header">
+<div class="mb-4 report_lifestory-form">
+    <div class="d-flex align-items-center flex-wrap justify-content-between gap-3 report_lifestory-header">
 
-        <div class="d-flex align-items-center flex-wrap gap-3 report_student_life_story_ai-actions">
+        <div class="d-flex align-items-center flex-wrap gap-3 report_lifestory-actions">
 
             <div id="usersearch-wrapper" class="position-relative" style="min-width: 300px;">
                 {{^selecteduser}}
@@ -34,7 +34,7 @@
                                name="searchvalue"
                                id="usersearch"
                                class="form-control pe-4"
-                               placeholder="{{#str}} searchusers, report_student_life_story_ai {{/str}}"
+                               placeholder="{{#str}} searchusers, report_lifestory {{/str}}"
                                value="{{searchvalue}}"
                                autocomplete="off">
 
@@ -54,24 +54,24 @@
                         <a href="{{baseurl}}"
                            class="ms-2 text-primary text-decoration-underline"
                            style="white-space: nowrap;">
-                            {{#str}} clearselection, report_student_life_story_ai {{/str}}
+                            {{#str}} clearselection, report_lifestory {{/str}}
                         </a>
                     </div>
                 {{/selecteduser}}
             </div>
 
             {{#hasuser}}
-            <div class="d-flex align-items-center gap-2 ms-3 report_student_life_story_ai-actionbuttons">
+            <div class="d-flex align-items-center gap-2 ms-3 report_lifestory-actionbuttons">
                 <a href="{{baseurl}}?userid={{userid}}&action=feedback"
                    class="btn btn-primary me-2"
                    id="btn-feedback-ai"
-                   data-loader-text="{{#str}} generatingfeedback, report_student_life_story_ai {{/str}}">
-                    {{#str}} generatefeedback, report_student_life_story_ai {{/str}}
+                   data-loader-text="{{#str}} generatingfeedback, report_lifestory {{/str}}">
+                    {{#str}} generatefeedback, report_lifestory {{/str}}
                 </a>
                 <a href="{{baseurl}}?userid={{userid}}&action=csv"
                    class="btn btn-success"
                    id="btn-csv-export">
-                    {{#str}} exportcsv, report_student_life_story_ai {{/str}}
+                    {{#str}} exportcsv, report_lifestory {{/str}}
                 </a>
             </div>
             {{/hasuser}}
@@ -79,8 +79,8 @@
 
         {{#hasuser}}
         {{#headerlogo}}
-        <div class="d-flex align-items-center ms-auto report_student_life_story_ai-logo">
-            <img src="{{logourl}}" alt="Logo Datacurso" class="report_student_life_story_ai-pluginlogo">
+        <div class="d-flex align-items-center ms-auto report_lifestory-logo">
+            <img src="{{logourl}}" alt="Logo Datacurso" class="report_lifestory-pluginlogo">
         </div>
         {{/headerlogo}}
         {{/hasuser}}
@@ -88,23 +88,23 @@
 </div>
 
 {{^hasuser}}
-<div class="alert alert-info report_student_life_story_ai-alert">
-    {{#str}} selectuser, report_student_life_story_ai {{/str}}
+<div class="alert alert-info report_lifestory-alert">
+    {{#str}} selectuser, report_lifestory {{/str}}
 </div>
 {{/hasuser}}
 
 {{#hasuser}}
     {{#showfeedback}}
-    <div class="alert alert-info mb-4 p-3 report_student_life_story_ai-feedback">
-        <h5 class="mb-3">{{#str}} feedbackfromai, report_student_life_story_ai {{/str}}</h5>
-        <div class="bg-light p-3 rounded mb-0 report_student_life_story_ai-feedbackcontent">
+    <div class="alert alert-info mb-4 p-3 report_lifestory-feedback">
+        <h5 class="mb-3">{{#str}} feedbackfromai, report_lifestory {{/str}}</h5>
+        <div class="bg-light p-3 rounded mb-0 report_lifestory-feedbackcontent">
             {{{feedback}}}
         </div>
     </div>
     {{/showfeedback}}
 
     {{#courses}}
-    <div class="mb-5 report_student_life_story_ai-course">
+    <div class="mb-5 report_lifestory-course">
         <h4 class="mb-3">{{fullname}}</h4>
         <div class="report-table border rounded p-3 bg-white shadow-sm">
             {{{reporthtml}}}

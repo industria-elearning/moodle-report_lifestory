@@ -15,9 +15,9 @@
 // along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
 
 /**
- * Capability definitions for report_student_life_story_ai.
+ * Capability definitions for report_lifestory.
  *
- * @package     report_student_life_story_ai
+ * @package     report_lifestory
  * @category    access
  * @copyright   2025 Datacurso
  * @license     https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later

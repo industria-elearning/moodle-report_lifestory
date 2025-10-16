@@ -17,7 +17,7 @@
 /**
  * Plugin strings are defined here.
  *
- * @package     report_student_life_story_ai
+ * @package     report_lifestory
  * @category    string
  * @copyright   2025 Datacurso
  * @license     https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
@@ -25,14 +25,14 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$string['clearselection'] = 'Clear';
-$string['exportcsv'] = 'Export to CSV';
-$string['exportingcsv'] = 'Exporting CSV';
-$string['feedbackfromai'] = 'AI Feedback';
-$string['generatefeedback'] = 'Generate AI feedback';
-$string['generatingfeedback'] = 'Generating feedback';
-$string['pluginname'] = 'Student Life Story AI';
-$string['searchusers'] = 'Search users';
-$string['select'] = 'Select';
-$string['selectuser'] = 'Please select a user to view their life story';
-$string['student_life_story'] = 'Student life story';
+$string['clearselection'] = 'Löschen';
+$string['exportcsv'] = 'Als CSV exportieren';
+$string['exportingcsv'] = 'CSV wird exportiert';
+$string['feedbackfromai'] = 'Feedback von KI';
+$string['generatefeedback'] = 'Feedback mit KI generieren';
+$string['generatingfeedback'] = 'Feedback wird generiert';
+$string['pluginname'] = 'KI-Lebensgeschichte des Studierenden';
+$string['searchusers'] = 'Benutzer suchen';
+$string['select'] = 'Auswählen';
+$string['selectuser'] = 'Bitte wählen Sie einen Benutzer aus, um seine Lebensgeschichte anzuzeigen';
+$string['student_life_story'] = 'Lebensgeschichte des Studierenden';

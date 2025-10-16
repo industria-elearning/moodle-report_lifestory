@@ -15,17 +15,17 @@
 // along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
 
 /**
- * Client API for report_student_life_story_ai.
+ * Client API for report_lifestory.
  *
- * @package     report_student_life_story_ai
+ * @package     report_lifestory
  * @copyright   2025 Datacurso
  * @license     https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-namespace report_student_life_story_ai\api;
+namespace report_lifestory\api;
 
 use aiprovider_datacurso\httpclient\ai_services_api;
-use report_student_life_story_ai\local\utils;
+use report_lifestory\local\utils;
 
 /**
  * Client to interact with AI services.

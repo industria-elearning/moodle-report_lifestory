@@ -15,9 +15,9 @@
 // along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
 
 /**
- * Web service definitions for report_student_life_story_ai.
+ * Web service definitions for report_lifestory.
  *
- * @package     report_student_life_story_ai
+ * @package     report_lifestory
  * @copyright   2025 Datacurso
  * @license     https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -25,8 +25,8 @@
 defined('MOODLE_INTERNAL') || die();
 
 $functions = [
-    'report_student_life_story_ai_search_students' => [
-        'classname'   => 'report_student_life_story_ai\external\search_students',
+    'report_lifestory_search_students' => [
+        'classname'   => 'report_lifestory\external\search_students',
         'methodname'  => 'execute',
         'description' => 'Search for students in the system',
         'type'        => 'read',

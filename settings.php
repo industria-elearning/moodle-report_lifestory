@@ -17,7 +17,7 @@
 /**
  * Plugin administration pages are defined here.
  *
- * @package     report_student_life_story_ai
+ * @package     report_lifestory
  * @category    admin
  * @copyright   2025 Datacurso
  * @license     https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
@@ -27,13 +27,13 @@ defined('MOODLE_INTERNAL') || die();
 
 if ($hassiteconfig) {
     $ADMIN->add('reports', new admin_category(
-        'report_student_life_story_ai_cat',
-        get_string('pluginname', 'report_student_life_story_ai')
+        'report_lifestory_cat',
+        get_string('pluginname', 'report_lifestory')
     ));
 
-    $ADMIN->add('report_student_life_story_ai_cat', new admin_externalpage(
-        'report_student_life_story_ai',
-        get_string('student_life_story', 'report_student_life_story_ai'),
+    $ADMIN->add('report_lifestory_cat', new admin_externalpage(
+        'report_lifestory',
+        get_string('student_life_story', 'report_lifestory'),
         new moodle_url('/report/student_life_story_ai/index.php')
     ));
 }

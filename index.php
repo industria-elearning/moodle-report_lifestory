@@ -17,7 +17,7 @@
 /**
  * Report index page for student_life_story_ai.
  *
- * @package     report_student_life_story_ai
+ * @package     report_lifestory
  * @copyright   2025 Datacurso
  * @license     https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -27,8 +27,8 @@ require_once($CFG->libdir . '/gradelib.php');
 require_once($CFG->dirroot . '/grade/lib.php');
 require_once($CFG->dirroot . '/grade/report/lib.php');
 
-use report_student_life_story_ai\api\client;
-use report_student_life_story_ai\local\utils;
+use report_lifestory\api\client;
+use report_lifestory\local\utils;
 
 $userid = optional_param('userid', 0, PARAM_INT);
 $courseid = optional_param('id', 0, PARAM_INT);
@@ -48,13 +48,13 @@ if ($userid && $action === 'csv') {
 $systemcontext = context_system::instance();
 $PAGE->set_context($systemcontext);
 $PAGE->set_url(new moodle_url('/report/student_life_story_ai/index.php', ['userid' => $userid, 'id' => $courseid]));
-$PAGE->set_title(get_string('student_life_story', 'report_student_life_story_ai'));
-$PAGE->set_heading(get_string('student_life_story', 'report_student_life_story_ai'));
+$PAGE->set_title(get_string('student_life_story', 'report_lifestory'));
+$PAGE->set_heading(get_string('student_life_story', 'report_lifestory'));
 
 $PAGE->requires->js_call_amd('gradereport_user/user', 'init');
-$PAGE->requires->js_call_amd('report_student_life_story_ai/togglecategories', 'init');
-$PAGE->requires->js_call_amd('report_student_life_story_ai/button_loader', 'init');
-$PAGE->requires->js_call_amd('report_student_life_story_ai/user_search', 'init', [
+$PAGE->requires->js_call_amd('report_lifestory/togglecategories', 'init');
+$PAGE->requires->js_call_amd('report_lifestory/button_loader', 'init');
+$PAGE->requires->js_call_amd('report_lifestory/user_search', 'init', [
     (new moodle_url('/report/student_life_story_ai/index.php'))->out(false),
 ]);
 $PAGE->requires->css(new moodle_url('/report/student_life_story_ai/styles/history_student.css'));
@@ -163,18 +163,18 @@ if ($userid && $action === 'feedback') {
     } else if (is_array($response) && isset($response['reply'])) {
         $replytext = $response['reply'];
     } else {
-        $replytext = get_string('noresponse', 'report_student_life_story_ai');
+        $replytext = get_string('noresponse', 'report_lifestory');
     }
 
     $feedbackhtml = html_writer::div(
         format_text($replytext, FORMAT_MARKDOWN),
-        'report_student_life_story_ai-feedbackcontent bg-light p-3 rounded'
+        'report_lifestory-feedbackcontent bg-light p-3 rounded'
     );
 }
 
 // Render Mustache.
 $renderer = $PAGE->get_renderer('core');
-$headerlogo = new \report_student_life_story_ai\output\header_logo();
+$headerlogo = new \report_lifestory\output\header_logo();
 $logocontext = $headerlogo->export_for_template($renderer);
 
 $templatecontext = [
@@ -191,7 +191,7 @@ $templatecontext = [
     'headerlogo' => $logocontext,
 ];
 
-echo $OUTPUT->render_from_template('report_student_life_story_ai/history_student', $templatecontext);
+echo $OUTPUT->render_from_template('report_lifestory/history_student', $templatecontext);
 echo $OUTPUT->footer();
 
 
@@ -222,5 +222,5 @@ function get_report_html($courseid, $userid) {
         return $report->print_table(true);
     }
 
-    return $OUTPUT->notification(get_string('noreportdata', 'report_student_life_story_ai'), 'warning');
+    return $OUTPUT->notification(get_string('noreportdata', 'report_lifestory'), 'warning');
 }
