@@ -35,4 +35,4 @@ $string['pluginname'] = 'KI-Lebensgeschichte des Studierenden';
 $string['searchusers'] = 'Benutzer suchen';
 $string['select'] = 'Auswählen';
 $string['selectuser'] = 'Bitte wählen Sie einen Benutzer aus, um seine Lebensgeschichte anzuzeigen';
-$string['student_life_story'] = 'Lebensgeschichte des Studierenden';
+$string['lifestory'] = 'Lebensgeschichte des Studierenden';

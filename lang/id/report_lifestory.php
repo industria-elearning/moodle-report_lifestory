@@ -35,4 +35,4 @@ $string['pluginname'] = 'Kisah hidup mahasiswa AI';
 $string['searchusers'] = 'Cari pengguna';
 $string['select'] = 'Pilih';
 $string['selectuser'] = 'Silakan pilih pengguna untuk melihat kisah hidupnya';
-$string['student_life_story'] = 'Kisah hidup mahasiswa';
+$string['lifestory'] = 'Kisah hidup mahasiswa';

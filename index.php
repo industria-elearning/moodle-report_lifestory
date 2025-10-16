@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
 
 /**
- * Report index page for student_life_story_ai.
+ * Report index page for lifestory.
  *
  * @package     report_lifestory
  * @copyright   2025 Datacurso
@@ -47,17 +47,17 @@ if ($userid && $action === 'csv') {
 // Configuración de la página.
 $systemcontext = context_system::instance();
 $PAGE->set_context($systemcontext);
-$PAGE->set_url(new moodle_url('/report/student_life_story_ai/index.php', ['userid' => $userid, 'id' => $courseid]));
-$PAGE->set_title(get_string('student_life_story', 'report_lifestory'));
-$PAGE->set_heading(get_string('student_life_story', 'report_lifestory'));
+$PAGE->set_url(new moodle_url('/report/lifestory/index.php', ['userid' => $userid, 'id' => $courseid]));
+$PAGE->set_title(get_string('lifestory', 'report_lifestory'));
+$PAGE->set_heading(get_string('lifestory', 'report_lifestory'));
 
 $PAGE->requires->js_call_amd('gradereport_user/user', 'init');
 $PAGE->requires->js_call_amd('report_lifestory/togglecategories', 'init');
 $PAGE->requires->js_call_amd('report_lifestory/button_loader', 'init');
 $PAGE->requires->js_call_amd('report_lifestory/user_search', 'init', [
-    (new moodle_url('/report/student_life_story_ai/index.php'))->out(false),
+    (new moodle_url('/report/lifestory/index.php'))->out(false),
 ]);
-$PAGE->requires->css(new moodle_url('/report/student_life_story_ai/styles/history_student.css'));
+$PAGE->requires->css(new moodle_url('/report/lifestory/styles/history_student.css'));
 
 echo $OUTPUT->header();
 
@@ -178,7 +178,7 @@ $headerlogo = new \report_lifestory\output\header_logo();
 $logocontext = $headerlogo->export_for_template($renderer);
 
 $templatecontext = [
-    'baseurl' => new moodle_url('/report/student_life_story_ai/index.php'),
+    'baseurl' => new moodle_url('/report/lifestory/index.php'),
     'userid' => $userid,
     'searchvalue' => $searchvalue,
     'searchresults' => $searchresults,
@@ -208,7 +208,7 @@ function get_report_html($courseid, $userid) {
     $coursecontext = context_course::instance($courseid);
     $gpr = new grade_plugin_return([
         'type' => 'report',
-        'plugin' => 'student_life_story_ai',
+        'plugin' => 'lifestory',
         'courseid' => $courseid,
         'userid' => $userid,
     ]);

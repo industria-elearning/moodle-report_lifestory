@@ -33,7 +33,7 @@ if ($hassiteconfig) {
 
     $ADMIN->add('report_lifestory_cat', new admin_externalpage(
         'report_lifestory',
-        get_string('student_life_story', 'report_lifestory'),
-        new moodle_url('/report/student_life_story_ai/index.php')
+        get_string('lifestory', 'report_lifestory'),
+        new moodle_url('/report/lifestory/index.php')
     ));
 }

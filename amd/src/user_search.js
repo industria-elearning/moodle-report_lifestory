@@ -14,7 +14,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * User search functionality for student_life_story_ai report.
+ * User search functionality for lifestory report.
  *
  * @module     report_lifestory/user_search
  * @copyright  2025 Datacurso

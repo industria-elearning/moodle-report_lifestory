@@ -35,4 +35,4 @@ $string['pluginname'] = 'История жизни студента ИИ';
 $string['searchusers'] = 'Поиск пользователей';
 $string['select'] = 'Выбрать';
 $string['selectuser'] = 'Пожалуйста, выберите пользователя, чтобы просмотреть его историю жизни';
-$string['student_life_story'] = 'История жизни студента';
+$string['lifestory'] = 'История жизни студента';
