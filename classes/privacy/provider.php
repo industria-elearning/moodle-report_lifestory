@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Privacy subsystem implementation for aiprovider_datacurso.
+ * Privacy subsystem implementation for report_lifestory.
  *
  * @package    report_lifestory
  * @copyright  2025 Datacurso
@@ -39,8 +39,8 @@ class provider implements
     /**
      * Describe the types of personal data transmitted by this plugin.
      *
-     * @param collection $collection
-     * @return collection
+     * @param collection $collection The initialised collection to add items to.
+     * @return collection The updated collection of metadata items.
      */
     public static function get_metadata(collection $collection): collection {
         $collection->add_external_location_link(
@@ -58,22 +58,34 @@ class provider implements
         return $collection;
     }
 
-    /** @inheritDoc */
+    /**
+     * Get the list of contexts that contain user information.
+     * {@inheritDoc}
+     */
     public static function get_contexts_for_userid(int $userid): contextlist {
         return new contextlist();
     }
 
-    /** @inheritDoc */
+    /**
+     * Delete user data for the specified user and context list.
+     * {@inheritDoc}
+     */
     public static function delete_data_for_user(approved_contextlist $contextlist): void {
         // No local data to delete.
     }
 
-    /** @inheritDoc */
+    /**
+     * Delete user data for all users in a given context.
+     * {@inheritDoc}
+     */
     public static function delete_data_for_all_users_in_context(\context $context): void {
         // No local data to delete.
     }
 
-    /** @inheritDoc */
+    /**
+     * Export user data for the given approved context list.
+     * {@inheritDoc}
+     */
     public static function export_user_data(approved_contextlist $contextlist): void {
         // No local data to export.
     }

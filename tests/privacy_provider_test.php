@@ -19,6 +19,7 @@
  *
  * @package   report_lifestory
  * @category  test
+ * @copyright   2025 Datacurso
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -33,10 +34,12 @@ use report_lifestory\privacy\provider;
  *
  * @package   report_lifestory
  * @category  test
+ * @covers    \report_lifestory\privacy\provider
  */
 final class privacy_provider_test extends provider_testcase {
     /**
      * Ensure that the provider declares the correct external AI service.
+     * @covers \report_lifestory\privacy\provider::get_metadata
      */
     public function test_get_metadata_declares_external_service(): void {
         $collection = new collection('report_lifestory');
@@ -62,6 +65,7 @@ final class privacy_provider_test extends provider_testcase {
 
     /**
      * Verify that no contexts or local user data are stored.
+     * @covers \report_lifestory\privacy\provider::get_contexts_for_userid
      */
     public function test_no_contexts_or_local_data(): void {
         $contextlist = provider::get_contexts_for_userid(999);
