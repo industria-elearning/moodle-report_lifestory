@@ -36,7 +36,6 @@ use core_privacy\local\request\contextlist;
 class provider implements
     \core_privacy\local\metadata\provider,
     \core_privacy\local\request\plugin\provider {
-
     /**
      * Describe the types of personal data transmitted by this plugin.
      *
