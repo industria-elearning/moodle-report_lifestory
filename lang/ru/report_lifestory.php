@@ -26,13 +26,14 @@
 defined('MOODLE_INTERNAL') || die();
 
 $string['clearselection'] = 'Очистить';
-$string['exportcsv'] = 'Экспортировать в CSV';
+$string['exportcsv'] = 'Экспорт в CSV';
 $string['exportingcsv'] = 'Экспорт CSV';
-$string['feedbackfromai'] = 'Обратная связь от ИИ';
+$string['feedbackfromai'] = 'Отзыв от ИИ';
 $string['generatefeedback'] = 'Создать отзыв с помощью ИИ';
 $string['generatingfeedback'] = 'Создание отзыва';
+$string['lifestory'] = 'История жизни студента';
 $string['pluginname'] = 'История жизни студента ИИ';
+$string['privacy:metadata'] = 'Плагин Life Story не хранит никаких персональных данных.';
 $string['searchusers'] = 'Поиск пользователей';
 $string['select'] = 'Выбрать';
 $string['selectuser'] = 'Пожалуйста, выберите пользователя, чтобы просмотреть его историю жизни';
-$string['lifestory'] = 'История жизни студента';
