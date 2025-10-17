@@ -1,5 +1,5 @@
 <?php
-// This file is part of Moodle - http://moodle.org/
+// This file is part of Moodle - http://moodle.org/.
 //
 // Moodle is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Privacy subsystem implementation for report_lifestory.
+ * Privacy subsystem implementation for aiprovider_datacurso.
  *
  * @package    report_lifestory
  * @copyright  2025 Datacurso
@@ -24,20 +24,57 @@
 
 namespace report_lifestory\privacy;
 
-use core_privacy\local\metadata\null_provider;
+use core_privacy\local\metadata\collection;
+use core_privacy\local\request\approved_contextlist;
+use core_privacy\local\request\contextlist;
 
 /**
- * Privacy provider for the report_lifestory plugin.
+ * Privacy provider for report_lifestory.
  *
- * This plugin does not store any personal data.
+ * @package    report_lifestory
  */
-class provider implements null_provider {
+class provider implements
+    \core_privacy\local\metadata\provider,
+    \core_privacy\local\request\plugin\provider {
     /**
-     * Get the language string identifier explaining why this plugin stores no data.
+     * Describe the types of personal data transmitted by this plugin.
      *
-     * @return string
+     * @param collection $collection
+     * @return collection
      */
-    public static function get_reason(): string {
-        return 'privacy:metadata';
+    public static function get_metadata(collection $collection): collection {
+        $collection->add_external_location_link(
+            'ai_provider',
+            [
+                'userid'      => 'privacy:metadata:ai_provider:userid',
+                'fullname'    => 'privacy:metadata:ai_provider:fullname',
+                'courseids'   => 'privacy:metadata:ai_provider:courseids',
+                'coursenames' => 'privacy:metadata:ai_provider:coursenames',
+                'context'     => 'privacy:metadata:ai_provider:context',
+            ],
+            'privacy:metadata:ai_provider'
+        );
+
+        return $collection;
+    }
+
+    /** @inheritDoc */
+    public static function get_contexts_for_userid(int $userid): contextlist {
+        return new contextlist();
+    }
+
+    /** @inheritDoc */
+    public static function delete_data_for_user(approved_contextlist $contextlist): void {
+        // No local data to delete.
+    }
+
+    /** @inheritDoc */
+    public static function delete_data_for_all_users_in_context(\context $context): void {
+        // No local data to delete.
+    }
+
+    /** @inheritDoc */
+    public static function export_user_data(approved_contextlist $contextlist): void {
+        // No local data to export.
     }
 }

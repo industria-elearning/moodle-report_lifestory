@@ -1,5 +1,5 @@
 <?php
-// This file is part of Moodle - http://moodle.org/
+// This file is part of Moodle - http://moodle.org/.
 //
 // Moodle is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -19,34 +19,52 @@
  *
  * @package   report_lifestory
  * @category  test
- * @copyright 2025 Datacurso
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 namespace report_lifestory;
 
-use core_privacy\local\metadata\null_provider;
+use core_privacy\local\metadata\collection;
 use core_privacy\tests\provider_testcase;
 use report_lifestory\privacy\provider;
 
 /**
- * Unit tests for the privacy provider of report_lifestory.
+ * Unit tests for report_lifestory privacy provider.
  *
- * @group report_lifestory
+ * @package   report_lifestory
+ * @category  test
  */
 final class privacy_provider_test extends provider_testcase {
     /**
-     * Test that the privacy provider implements null_provider.
+     * Ensure that the provider declares the correct external AI service.
      */
-    public function test_implements_null_provider(): void {
-        $this->assertInstanceOf(null_provider::class, new provider());
+    public function test_get_metadata_declares_external_service(): void {
+        $collection = new collection('report_lifestory');
+        $metadata = provider::get_metadata($collection)->get_collection();
+
+        $found = false;
+        foreach ($metadata as $item) {
+            if ($item->get_name() === 'ai_provider') {
+                $found = true;
+                $fields = $item->get_privacy_fields();
+
+                // Verify expected data fields are declared.
+                $this->assertArrayHasKey('userid', $fields);
+                $this->assertArrayHasKey('fullname', $fields);
+                $this->assertArrayHasKey('courseids', $fields);
+                $this->assertArrayHasKey('coursenames', $fields);
+                $this->assertArrayHasKey('context', $fields);
+            }
+        }
+
+        $this->assertTrue($found, 'The ai_provider external location should be declared in get_metadata().');
     }
 
     /**
-     * Test that the get_reason() method returns the correct language string identifier.
+     * Verify that no contexts or local user data are stored.
      */
-    public function test_get_reason_returns_correct_identifier(): void {
-        $reason = provider::get_reason();
-        $this->assertEquals('privacy:metadata', $reason);
+    public function test_no_contexts_or_local_data(): void {
+        $contextlist = provider::get_contexts_for_userid(999);
+        $this->assertEmpty($contextlist->get_contextids(), 'report_lifestory should not store user contexts locally.');
     }
 }
