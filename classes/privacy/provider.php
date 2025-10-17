@@ -36,6 +36,7 @@ use core_privacy\local\request\contextlist;
 class provider implements
     \core_privacy\local\metadata\provider,
     \core_privacy\local\request\plugin\provider {
+
     /**
      * Describe the types of personal data transmitted by this plugin.
      *
@@ -59,24 +60,30 @@ class provider implements
     }
 
     /**
-     * Get the list of contexts that contain user information.
-     * {@inheritDoc}
+     * Get the list of contexts that contain user information for a given user.
+     *
+     * @param int $userid The ID of the user whose data contexts should be retrieved.
+     * @return contextlist The list of contexts containing user information.
      */
     public static function get_contexts_for_userid(int $userid): contextlist {
         return new contextlist();
     }
 
     /**
-     * Delete user data for the specified user and context list.
-     * {@inheritDoc}
+     * Delete user data for the specified user in the given context list.
+     *
+     * @param approved_contextlist $contextlist The approved contexts for the user.
+     * @return void
      */
     public static function delete_data_for_user(approved_contextlist $contextlist): void {
         // No local data to delete.
     }
 
     /**
-     * Delete user data for all users in a given context.
-     * {@inheritDoc}
+     * Delete all user data for all users in the specified context.
+     *
+     * @param \context $context The context for which all user data should be deleted.
+     * @return void
      */
     public static function delete_data_for_all_users_in_context(\context $context): void {
         // No local data to delete.
@@ -84,7 +91,9 @@ class provider implements
 
     /**
      * Export user data for the given approved context list.
-     * {@inheritDoc}
+     *
+     * @param approved_contextlist $contextlist The approved contexts to export data from.
+     * @return void
      */
     public static function export_user_data(approved_contextlist $contextlist): void {
         // No local data to export.
