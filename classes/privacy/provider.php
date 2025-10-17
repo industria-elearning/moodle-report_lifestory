@@ -1,5 +1,5 @@
 <?php
-// This file is part of Moodle - http://moodle.org/
+// This file is part of Moodle - http://moodle.org/.
 //
 // Moodle is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -24,20 +24,77 @@
 
 namespace report_lifestory\privacy;
 
-use core_privacy\local\metadata\null_provider;
+use core_privacy\local\metadata\collection;
+use core_privacy\local\request\approved_contextlist;
+use core_privacy\local\request\contextlist;
 
 /**
- * Privacy provider for the report_lifestory plugin.
+ * Privacy provider for report_lifestory.
  *
- * This plugin does not store any personal data.
+ * @package    report_lifestory
  */
-class provider implements null_provider {
+class provider implements
+    \core_privacy\local\metadata\provider,
+    \core_privacy\local\request\plugin\provider {
     /**
-     * Get the language string identifier explaining why this plugin stores no data.
+     * Describe the types of personal data transmitted by this plugin.
      *
-     * @return string
+     * @param collection $collection The initialised collection to add items to.
+     * @return collection The updated collection of metadata items.
      */
-    public static function get_reason(): string {
-        return 'privacy:metadata';
+    public static function get_metadata(collection $collection): collection {
+        $collection->add_external_location_link(
+            'ai_provider',
+            [
+                'userid'      => 'privacy:metadata:ai_provider:userid',
+                'fullname'    => 'privacy:metadata:ai_provider:fullname',
+                'courseids'   => 'privacy:metadata:ai_provider:courseids',
+                'coursenames' => 'privacy:metadata:ai_provider:coursenames',
+                'context'     => 'privacy:metadata:ai_provider:context',
+            ],
+            'privacy:metadata:ai_provider'
+        );
+
+        return $collection;
+    }
+
+    /**
+     * Get the list of contexts that contain user information for a given user.
+     *
+     * @param int $userid The ID of the user whose data contexts should be retrieved.
+     * @return contextlist The list of contexts containing user information.
+     */
+    public static function get_contexts_for_userid(int $userid): contextlist {
+        return new contextlist();
+    }
+
+    /**
+     * Delete user data for the specified user in the given context list.
+     *
+     * @param approved_contextlist $contextlist The approved contexts for the user.
+     * @return void
+     */
+    public static function delete_data_for_user(approved_contextlist $contextlist): void {
+        // No local data to delete.
+    }
+
+    /**
+     * Delete all user data for all users in the specified context.
+     *
+     * @param \context $context The context for which all user data should be deleted.
+     * @return void
+     */
+    public static function delete_data_for_all_users_in_context(\context $context): void {
+        // No local data to delete.
+    }
+
+    /**
+     * Export user data for the given approved context list.
+     *
+     * @param approved_contextlist $contextlist The approved contexts to export data from.
+     * @return void
+     */
+    public static function export_user_data(approved_contextlist $contextlist): void {
+        // No local data to export.
     }
 }
