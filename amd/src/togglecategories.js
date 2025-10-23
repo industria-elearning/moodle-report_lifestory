@@ -1,6 +1,9 @@
 /**
- * Controlador JS para expandir/colapsar categorías en el historial de estudiante.
- * Mantiene el estado expandido/colapsado usando localStorage por usuario y curso.
+ * Controller for expanding/collapsing grade report categories (compatible with gradereport_user).
+ * Fixes the visual state of the toggle icon and preserves the expanded/collapsed state
+ * using localStorage for each user and course.
+ *
+ * @module report_lifestory/togglecategories
  */
 export const init = () => {
     const params = new URLSearchParams(window.location.search);
@@ -8,16 +11,21 @@ export const init = () => {
     const courseid = params.get('id') || 'all';
     const STORAGE_KEY = `history_student_ai_state_${userid}_${courseid}`;
 
-    // Cargar estado previo
     let state = {};
     try {
         state = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
-    } catch (e) {
+    } catch {
         state = {};
     }
 
-    // Inicializa botones y aplica estado guardado
     document.querySelectorAll(".toggle-category").forEach(button => {
+        const icons = button.querySelectorAll(".icon, .fa, i");
+        if (icons.length > 1) {
+            for (let i = 0; i < icons.length - 1; i++) {
+                icons[i].remove();
+            }
+        }
+
         const categoryId = button.dataset.categoryid;
         const dataTarget = button.dataset.target;
         let categoryRows = dataTarget ? document.querySelectorAll(dataTarget) : [];
@@ -26,52 +34,52 @@ export const init = () => {
             categoryRows = document.querySelectorAll("tr.cat_" + categoryId);
         }
 
-        // Aplica estado guardado (expandido o colapsado)
+        // Apply the saved expanded/collapsed state.
         const savedExpanded = state[categoryId];
+        const icon = button.querySelector(".icon, .fa, i");
+
         if (savedExpanded === false) {
-            categoryRows.forEach(row => (row.style.display = "none"));
+            categoryRows.forEach(r => (r.style.display = "none"));
             button.setAttribute("aria-expanded", "false");
-            button.querySelector(".collapsed")?.classList.remove("d-none");
-            button.querySelector(".expanded")?.classList.add("d-none");
+            rotateIcon(icon, false);
         } else if (savedExpanded === true) {
-            categoryRows.forEach(row => (row.style.display = ""));
+            categoryRows.forEach(r => (r.style.display = ""));
             button.setAttribute("aria-expanded", "true");
-            button.querySelector(".collapsed")?.classList.add("d-none");
-            button.querySelector(".expanded")?.classList.remove("d-none");
+            rotateIcon(icon, true);
+        } else {
+            // Default behavior: sync the state with current visibility.
+            const visible = categoryRows.length > 0 && categoryRows[0].style.display !== "none";
+            button.setAttribute("aria-expanded", visible ? "true" : "false");
+            rotateIcon(icon, visible);
         }
 
-        // Evento de click para alternar y guardar estado
+        // Click handler: toggle visibility and persist the new state.
         button.addEventListener("click", e => {
             e.preventDefault();
             e.stopPropagation();
 
             const isExpanded = button.getAttribute("aria-expanded") === "true";
+            const newExpanded = !isExpanded;
 
-            if (isExpanded) {
-                // Colapsar
-                categoryRows.forEach(row => (row.style.display = "none"));
-                button.setAttribute("aria-expanded", "false");
-                button.querySelector(".collapsed")?.classList.remove("d-none");
-                button.querySelector(".expanded")?.classList.add("d-none");
-                state[categoryId] = false;
-            } else {
-                // Expandir
-                categoryRows.forEach(row => (row.style.display = ""));
-                button.setAttribute("aria-expanded", "true");
-                button.querySelector(".collapsed")?.classList.add("d-none");
-                button.querySelector(".expanded")?.classList.remove("d-none");
-                state[categoryId] = true;
-            }
-
-            // Guardar estado actualizado
+            categoryRows.forEach(r => (r.style.display = newExpanded ? "" : "none"));
+            button.setAttribute("aria-expanded", newExpanded ? "true" : "false");
+            state[categoryId] = newExpanded;
             localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+            rotateIcon(icon, newExpanded);
         });
     });
-
-    // Asegurar íconos iniciales correctos
-    document.querySelectorAll(".toggle-category").forEach(button => {
-        const isExpanded = button.getAttribute("aria-expanded") === "true";
-        button.querySelector(".collapsed")?.classList.toggle("d-none", isExpanded);
-        button.querySelector(".expanded")?.classList.toggle("d-none", !isExpanded);
-    });
 };
+
+/**
+ * Rotates the category toggle icon according to its expansion state.
+ *
+ * @param {HTMLElement|null} icon - The icon element inside the toggle button.
+ * @param {boolean} expanded - Whether the category is expanded or collapsed.
+ */
+function rotateIcon(icon, expanded) {
+    if (!icon) {
+        return;
+    }
+    icon.style.transition = "transform 0.2s ease";
+    icon.style.transform = expanded ? "rotate(90deg)" : "rotate(0deg)";
+}
