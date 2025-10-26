@@ -26,6 +26,7 @@
 defined('MOODLE_INTERNAL') || die();
 
 $string['clearselection'] = 'Очистить';
+$string['error_airequest'] = 'Ошибка при обращении к сервису ИИ: {$a}';
 $string['exportcsv'] = 'Экспорт в CSV';
 $string['exportingcsv'] = 'Экспорт CSV';
 $string['feedbackfromai'] = 'Отзыв от ИИ';

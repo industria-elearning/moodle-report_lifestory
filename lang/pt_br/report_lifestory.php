@@ -26,6 +26,7 @@
 defined('MOODLE_INTERNAL') || die();
 
 $string['clearselection'] = 'Limpar';
+$string['error_airequest'] = 'Erro ao se comunicar com o serviço de IA: {$a}';
 $string['exportcsv'] = 'Exportar para CSV';
 $string['exportingcsv'] = 'Exportando CSV';
 $string['feedbackfromai'] = 'Feedback da IA';
