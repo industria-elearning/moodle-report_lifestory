@@ -148,28 +148,44 @@ if ($userid) {
 $feedbackhtml = null;
 
 if ($userid && $action === 'feedback') {
-    $payload = utils::build_student_payload($userid);
-    $response = client::send_to_ai($payload);
+    try {
+        $payload = utils::build_student_payload($userid);
+        $response = client::send_to_ai($payload);
 
-    $replytext = '';
+        $replytext = '';
 
-    if (is_string($response)) {
-        $decoded = json_decode($response, true);
-        if (json_last_error() === JSON_ERROR_NONE && isset($decoded['reply'])) {
-            $replytext = $decoded['reply'];
+        if (is_string($response)) {
+            $decoded = json_decode($response, true);
+            if (json_last_error() === JSON_ERROR_NONE && isset($decoded['reply'])) {
+                $replytext = $decoded['reply'];
+            } else {
+                $replytext = $response;
+            }
+        } else if (is_array($response) && isset($response['reply'])) {
+            $replytext = $response['reply'];
         } else {
-            $replytext = $response;
+            $replytext = get_string('noresponse', 'report_lifestory');
         }
-    } else if (is_array($response) && isset($response['reply'])) {
-        $replytext = $response['reply'];
-    } else {
-        $replytext = get_string('noresponse', 'report_lifestory');
-    }
 
-    $feedbackhtml = html_writer::div(
-        format_text($replytext, FORMAT_MARKDOWN),
-        'report_lifestory-feedbackcontent bg-light p-3 rounded'
-    );
+        $feedbackhtml = html_writer::div(
+            format_text($replytext, FORMAT_MARKDOWN),
+            'report_lifestory-feedbackcontent bg-light p-3 rounded'
+        );
+    } catch (\moodle_exception $e) {
+        debugging('Error en el servicio de IA: ' . $e->getMessage(), DEBUG_DEVELOPER);
+
+        \core\notification::add(
+            get_string('error_airequest', 'report_lifestory', $e->getMessage()),
+            \core\output\notification::NOTIFY_ERROR
+        );
+    } catch (\Throwable $e) {
+        debugging('Error inesperado al procesar IA: ' . $e->getMessage(), DEBUG_DEVELOPER);
+
+        \core\notification::add(
+            get_string('error_airequest', 'report_lifestory', $e->getMessage()),
+            \core\output\notification::NOTIFY_ERROR
+        );
+    }
 }
 
 // Render Mustache.
