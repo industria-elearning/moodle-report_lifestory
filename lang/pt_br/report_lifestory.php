@@ -25,7 +25,7 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$string['clearselection'] = 'Limpar';
+$string['clearselection'] = 'Limpar seleção';
 $string['error_airequest'] = 'Erro ao se comunicar com o serviço de IA: {$a}';
 $string['exportcsv'] = 'Exportar para CSV';
 $string['exportingcsv'] = 'Exportando CSV';
@@ -33,13 +33,16 @@ $string['feedbackfromai'] = 'Feedback da IA';
 $string['generatefeedback'] = 'Gerar feedback com IA';
 $string['generatingfeedback'] = 'Gerando feedback';
 $string['lifestory'] = 'História de vida do estudante';
+$string['lifestory:view'] = 'Ver relatório da história de vida';
+$string['noreportdata'] = 'Nenhum dado de relatório disponível.';
+$string['noresponse'] = 'Nenhuma resposta recebida.';
 $string['pluginname'] = 'História de vida do estudante IA';
-$string['privacy:metadata:ai_provider'] = 'Os dados são enviados para o sistema de IA da empresa para gerar feedback com base no histórico acadêmico do estudante.';
+$string['privacy:metadata:ai_provider'] = 'Os dados são enviados ao sistema de IA da empresa para gerar feedback com base no histórico acadêmico do estudante.';
 $string['privacy:metadata:ai_provider:context'] = 'O contexto da análise (por exemplo, desempenho acadêmico ou reflexão).';
-$string['privacy:metadata:ai_provider:courseids'] = 'A lista de IDs de cursos em que o usuário está matriculado.';
-$string['privacy:metadata:ai_provider:coursenames'] = 'Os nomes dos cursos em que o usuário está matriculado.';
+$string['privacy:metadata:ai_provider:courseids'] = 'Lista de IDs dos cursos nos quais o usuário está matriculado.';
+$string['privacy:metadata:ai_provider:coursenames'] = 'Nomes dos cursos nos quais o usuário está matriculado.';
 $string['privacy:metadata:ai_provider:fullname'] = 'O nome completo do usuário para fornecer contexto.';
 $string['privacy:metadata:ai_provider:userid'] = 'O ID do usuário cujo histórico acadêmico está sendo analisado.';
-$string['searchusers'] = 'Pesquisar usuários';
+$string['searchusers'] = 'Buscar usuários';
 $string['select'] = 'Selecionar';
 $string['selectuser'] = 'Por favor, selecione um usuário para ver sua história de vida';

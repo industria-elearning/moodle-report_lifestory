@@ -25,19 +25,22 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$string['clearselection'] = 'Очистить';
-$string['error_airequest'] = 'Ошибка при обращении к сервису ИИ: {$a}';
+$string['clearselection'] = 'Очистить выбор';
+$string['error_airequest'] = 'Ошибка при связи с сервисом ИИ: {$a}';
 $string['exportcsv'] = 'Экспорт в CSV';
 $string['exportingcsv'] = 'Экспорт CSV';
-$string['feedbackfromai'] = 'Отзыв от ИИ';
-$string['generatefeedback'] = 'Создать отзыв с помощью ИИ';
-$string['generatingfeedback'] = 'Создание отзыва';
+$string['feedbackfromai'] = 'Обратная связь от ИИ';
+$string['generatefeedback'] = 'Создать обратную связь с помощью ИИ';
+$string['generatingfeedback'] = 'Создание обратной связи';
 $string['lifestory'] = 'История жизни студента';
+$string['lifestory:view'] = 'Просмотр отчёта об истории жизни';
+$string['noreportdata'] = 'Нет доступных данных отчёта.';
+$string['noresponse'] = 'Ответ не получен.';
 $string['pluginname'] = 'История жизни студента ИИ';
-$string['privacy:metadata:ai_provider'] = 'Данные отправляются в систему ИИ компании для создания отзывов на основе академической истории студента.';
-$string['privacy:metadata:ai_provider:context'] = 'Контекст анализа (например, академическая успеваемость или размышления).';
-$string['privacy:metadata:ai_provider:courseids'] = 'Список идентификаторов курсов, на которые зачислен пользователь.';
-$string['privacy:metadata:ai_provider:coursenames'] = 'Названия курсов, на которые зачислен пользователь.';
+$string['privacy:metadata:ai_provider'] = 'Данные отправляются в систему ИИ компании для генерации обратной связи на основе академической истории студента.';
+$string['privacy:metadata:ai_provider:context'] = 'Контекст анализа (например, академическая успеваемость или рефлексия).';
+$string['privacy:metadata:ai_provider:courseids'] = 'Список ID курсов, на которые пользователь записан.';
+$string['privacy:metadata:ai_provider:coursenames'] = 'Названия курсов, на которые пользователь записан.';
 $string['privacy:metadata:ai_provider:fullname'] = 'Полное имя пользователя для предоставления контекста.';
 $string['privacy:metadata:ai_provider:userid'] = 'ID пользователя, чья академическая история анализируется.';
 $string['searchusers'] = 'Поиск пользователей';

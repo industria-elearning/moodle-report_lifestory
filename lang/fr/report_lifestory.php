@@ -25,7 +25,7 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$string['clearselection'] = 'Effacer';
+$string['clearselection'] = 'Effacer la sélection';
 $string['error_airequest'] = 'Erreur lors de la communication avec le service IA : {$a}';
 $string['exportcsv'] = 'Exporter en CSV';
 $string['exportingcsv'] = 'Exportation du CSV';
@@ -33,13 +33,16 @@ $string['feedbackfromai'] = 'Retour de l’IA';
 $string['generatefeedback'] = 'Générer un retour avec l’IA';
 $string['generatingfeedback'] = 'Génération du retour';
 $string['lifestory'] = 'Histoire de vie de l’étudiant';
+$string['lifestory:view'] = 'Afficher le rapport de l’histoire de vie';
+$string['noreportdata'] = 'Aucune donnée de rapport disponible.';
+$string['noresponse'] = 'Aucune réponse reçue.';
 $string['pluginname'] = 'Histoire de vie de l’étudiant IA';
-$string['privacy:metadata:ai_provider'] = 'Des données sont envoyées au système d’IA de l’entreprise pour générer une rétroaction basée sur l’historique académique de l’étudiant.';
-$string['privacy:metadata:ai_provider:context'] = 'Le contexte de l’analyse (par exemple, performance académique ou réflexion).';
-$string['privacy:metadata:ai_provider:courseids'] = 'La liste des identifiants des cours auxquels l’utilisateur est inscrit.';
-$string['privacy:metadata:ai_provider:coursenames'] = 'Les noms des cours auxquels l’utilisateur est inscrit.';
-$string['privacy:metadata:ai_provider:fullname'] = 'Le nom complet de l’utilisateur pour fournir un contexte.';
-$string['privacy:metadata:ai_provider:userid'] = 'L’ID de l’utilisateur dont l’historique académique est analysé.';
+$string['privacy:metadata:ai_provider'] = 'Les données sont envoyées au système d’IA de l’entreprise pour générer un retour basé sur l’historique académique de l’étudiant.';
+$string['privacy:metadata:ai_provider:context'] = 'Le contexte de l’analyse (par ex. performance académique ou réflexion).';
+$string['privacy:metadata:ai_provider:courseids'] = 'La liste des identifiants de cours dans lesquels l’utilisateur est inscrit.';
+$string['privacy:metadata:ai_provider:coursenames'] = 'Les noms des cours dans lesquels l’utilisateur est inscrit.';
+$string['privacy:metadata:ai_provider:fullname'] = 'Le nom complet de l’utilisateur pour fournir le contexte.';
+$string['privacy:metadata:ai_provider:userid'] = 'L’identifiant de l’utilisateur dont l’historique académique est analysé.';
 $string['searchusers'] = 'Rechercher des utilisateurs';
 $string['select'] = 'Sélectionner';
 $string['selectuser'] = 'Veuillez sélectionner un utilisateur pour voir son histoire de vie';
