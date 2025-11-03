@@ -1,4 +1,4 @@
-// This file is part of Moodle - http://moodle.org/
+// This file is part of Moodle - https://moodle.org/
 //
 // Moodle is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -11,14 +11,14 @@
 // GNU General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License
-// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+// along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
 
 /**
- * User search functionality for lifestory report.
+ * Provides live user search functionality for the lifestory report, including AJAX requests and dynamic result rendering.
  *
- * @module     report_lifestory/user_search
- * @copyright  2025 Datacurso
- * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @module      report_lifestory/user_search
+ * @copyright   2025 Datacurso
+ * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 define(['jquery', 'core/ajax', 'core/notification'], function ($, Ajax, Notification) {
@@ -79,7 +79,7 @@ define(['jquery', 'core/ajax', 'core/notification'], function ($, Ajax, Notifica
 
         container.html(html).removeClass('d-none');
 
-        // Hover effect similar to Moodle
+        // Hover effect similar to Moodle’s style
         container.find('a').hover(
             function () { $(this).css('background-color', '#f8f9fa'); },
             function () { $(this).css('background-color', ''); }
@@ -87,7 +87,7 @@ define(['jquery', 'core/ajax', 'core/notification'], function ($, Ajax, Notifica
     };
 
     /**
-     * Initialize the user search
+     * Initialize the user search functionality
      * @param {string} baseUrl Base URL for the page
      */
     const init = function (baseUrl) {
@@ -99,11 +99,11 @@ define(['jquery', 'core/ajax', 'core/notification'], function ($, Ajax, Notifica
             return;
         }
 
-        // --- Input event ---
+        // Input event
         searchInput.on('input', function () {
             const query = $(this).val().trim();
 
-            // Mostrar / ocultar la X
+            // Show or hide the clear (X) button
             if (query.length > 0) {
                 clearButton.show();
             } else {
@@ -112,12 +112,12 @@ define(['jquery', 'core/ajax', 'core/notification'], function ($, Ajax, Notifica
                 return;
             }
 
-            // Cancelar búsqueda anterior
+            // Cancel previous search
             if (searchTimeout) {
                 clearTimeout(searchTimeout);
             }
 
-            // Esperar un poco antes de buscar
+            // Wait briefly before searching
             searchTimeout = setTimeout(function () {
                 searchStudents(query)
                     .then(function (response) {
@@ -128,7 +128,7 @@ define(['jquery', 'core/ajax', 'core/notification'], function ($, Ajax, Notifica
             }, SEARCH_DELAY);
         });
 
-        // --- Botón limpiar dentro del input ---
+        // Clear button inside input
         clearButton.on('click', function (e) {
             e.preventDefault();
             searchInput.val('');
@@ -137,7 +137,7 @@ define(['jquery', 'core/ajax', 'core/notification'], function ($, Ajax, Notifica
             searchInput.focus();
         });
 
-        // --- Mostrar resultados al enfocar ---
+        // Show results when focused
         searchInput.on('focus', function () {
             const query = $(this).val().trim();
             if (query.length > 0 && resultsContainer.children().length > 0) {
@@ -145,14 +145,14 @@ define(['jquery', 'core/ajax', 'core/notification'], function ($, Ajax, Notifica
             }
         });
 
-        // --- Ocultar resultados al hacer clic fuera ---
+        // Hide results when clicking outside
         $(document).on('click', function (e) {
             if (!$(e.target).closest('#usersearch-wrapper').length) {
                 resultsContainer.addClass('d-none');
             }
         });
 
-        // --- Evitar submit con Enter ---
+        // Prevent submitting form with Enter
         searchInput.on('keydown', function (e) {
             if (e.key === 'Enter') {
                 e.preventDefault();
