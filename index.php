@@ -44,7 +44,7 @@ if ($courseid) {
 
 require_capability('report/lifestory:view', $context);
 
-// Exportar CSV.
+// Export CSV.
 if ($userid && $action === 'csv') {
     $payload = utils::build_student_payload($userid);
     $payload = utils::normalize_payload($payload);
@@ -52,7 +52,7 @@ if ($userid && $action === 'csv') {
     exit;
 }
 
-// Configuración de la página.
+// Page configuration.
 $systemcontext = context_system::instance();
 $PAGE->set_context($systemcontext);
 $PAGE->set_url(new moodle_url('/report/lifestory/index.php', ['userid' => $userid, 'id' => $courseid]));
@@ -69,7 +69,7 @@ $PAGE->requires->css(new moodle_url('/report/lifestory/styles/history_student.cs
 
 echo $OUTPUT->header();
 
-// Buscar estudiantes según el valor de búsqueda.
+// Search students based on search value.
 $searchresults = [];
 $selecteduser = null;
 
@@ -83,7 +83,7 @@ if (!empty($searchvalue)) {
         if (!empty($userids)) {
             [$insql, $inparams] = $DB->get_in_or_equal($userids, SQL_PARAMS_NAMED);
 
-            // Búsqueda por nombre, apellido o email.
+            // Search by first name, last name, or email.
             $searchsql = "id $insql AND deleted = 0 AND (
                 " . $DB->sql_like('firstname', ':search1', false) . " OR
                 " . $DB->sql_like('lastname', ':search2', false) . " OR
@@ -118,7 +118,7 @@ if (!empty($searchvalue)) {
     }
 }
 
-// Obtener información del usuario seleccionado.
+// Get selected user info.
 if ($userid) {
     $selecteduser = $DB->get_record('user', ['id' => $userid], 'id, firstname, lastname, email');
     if ($selecteduser) {
@@ -130,7 +130,7 @@ if ($userid) {
     }
 }
 
-// Historial de calificaciones.
+// Grade history.
 $coursesdata = [];
 
 if ($userid) {
@@ -152,7 +152,7 @@ if ($userid) {
     }
 }
 
-// Feedback IA.
+// AI Feedback.
 $feedbackhtml = null;
 
 if ($userid && $action === 'feedback') {
@@ -180,14 +180,14 @@ if ($userid && $action === 'feedback') {
             'report_lifestory-feedbackcontent bg-light p-3 rounded'
         );
     } catch (\moodle_exception $e) {
-        debugging('Error en el servicio de IA: ' . $e->getMessage(), DEBUG_DEVELOPER);
+        debugging(get_string('error_ai_service', 'report_lifestory', $e->getMessage()), DEBUG_DEVELOPER);
 
         \core\notification::add(
             get_string('error_airequest', 'report_lifestory', $e->getMessage()),
             \core\output\notification::NOTIFY_ERROR
         );
     } catch (\Throwable $e) {
-        debugging('Error inesperado al procesar IA: ' . $e->getMessage(), DEBUG_DEVELOPER);
+        debugging(get_string('unexpected_ai_error', 'report_lifestory', $e->getMessage()), DEBUG_DEVELOPER);
 
         \core\notification::add(
             get_string('error_airequest', 'report_lifestory', $e->getMessage()),
@@ -217,7 +217,6 @@ $templatecontext = [
 
 echo $OUTPUT->render_from_template('report_lifestory/history_student', $templatecontext);
 echo $OUTPUT->footer();
-
 
 /**
  * Generates the grade report HTML for a given course and user.

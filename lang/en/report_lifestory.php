@@ -26,6 +26,7 @@
 defined('MOODLE_INTERNAL') || die();
 
 $string['clearselection'] = 'Clear';
+$string['error_ai_service'] = 'AI service error: {$a}';
 $string['error_airequest'] = 'Error communicating with the AI service: {$a}';
 $string['exportcsv'] = 'Export to CSV';
 $string['exportingcsv'] = 'Exporting CSV';
@@ -46,3 +47,4 @@ $string['privacy:metadata:ai_provider:userid'] = 'The ID of the user whose acade
 $string['searchusers'] = 'Search users';
 $string['select'] = 'Select';
 $string['selectuser'] = 'Please select a user to view their life story';
+$string['unexpected_ai_error'] = 'Unexpected AI processing error: {$a}';

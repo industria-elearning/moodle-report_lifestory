@@ -26,12 +26,13 @@
 defined('MOODLE_INTERNAL') || die();
 
 $string['clearselection'] = 'Hapus pilihan';
+$string['error_ai_service'] = 'Kesalahan layanan AI: {$a}';
 $string['error_airequest'] = 'Kesalahan saat berkomunikasi dengan layanan AI: {$a}';
 $string['exportcsv'] = 'Ekspor ke CSV';
 $string['exportingcsv'] = 'Mengekspor CSV';
 $string['feedbackfromai'] = 'Umpan balik dari AI';
-$string['generatefeedback'] = 'Hasilkan umpan balik dengan AI';
-$string['generatingfeedback'] = 'Sedang membuat umpan balik';
+$string['generatefeedback'] = 'Hasilkan umpan balik AI';
+$string['generatingfeedback'] = 'Sedang menghasilkan umpan balik';
 $string['lifestory'] = 'Kisah hidup mahasiswa';
 $string['lifestory:view'] = 'Lihat laporan kisah hidup';
 $string['noreportdata'] = 'Tidak ada data laporan yang tersedia.';
@@ -40,9 +41,10 @@ $string['pluginname'] = 'Kisah hidup mahasiswa AI';
 $string['privacy:metadata:ai_provider'] = 'Data dikirim ke sistem AI perusahaan untuk menghasilkan umpan balik berdasarkan riwayat akademik mahasiswa.';
 $string['privacy:metadata:ai_provider:context'] = 'Konteks analisis (misalnya, kinerja akademik atau refleksi).';
 $string['privacy:metadata:ai_provider:courseids'] = 'Daftar ID kursus tempat pengguna terdaftar.';
-$string['privacy:metadata:ai_provider:coursenames'] = 'Nama kursus tempat pengguna terdaftar.';
+$string['privacy:metadata:ai_provider:coursenames'] = 'Nama-nama kursus tempat pengguna terdaftar.';
 $string['privacy:metadata:ai_provider:fullname'] = 'Nama lengkap pengguna untuk memberikan konteks.';
 $string['privacy:metadata:ai_provider:userid'] = 'ID pengguna yang riwayat akademiknya dianalisis.';
 $string['searchusers'] = 'Cari pengguna';
 $string['select'] = 'Pilih';
 $string['selectuser'] = 'Silakan pilih pengguna untuk melihat kisah hidupnya';
+$string['unexpected_ai_error'] = 'Kesalahan tak terduga dalam pemrosesan AI: {$a}';
