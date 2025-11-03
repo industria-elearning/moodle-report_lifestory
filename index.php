@@ -36,6 +36,14 @@ $action = optional_param('action', '', PARAM_ALPHA);
 
 require_login();
 
+if ($courseid) {
+    $context = context_course::instance($courseid);
+} else {
+    $context = context_system::instance();
+}
+
+require_capability('report/lifestory:view', $context);
+
 // Exportar CSV.
 if ($userid && $action === 'csv') {
     $payload = utils::build_student_payload($userid);

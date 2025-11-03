@@ -56,7 +56,7 @@ class search_students extends external_api {
 
         require_login();
 
-        $context = context_system::instance();
+        $context = \context_system::instance();
         self::validate_context($context);
 
         require_capability('report/lifestory:view', $context);
