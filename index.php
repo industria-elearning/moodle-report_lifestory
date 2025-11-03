@@ -130,7 +130,7 @@ if ($userid) {
         $coursesdata[] = [
             'id' => $courseid,
             'fullname' => get_course($courseid)->fullname,
-            'reporthtml' => get_report_html($courseid, $userid),
+            'reporthtml' => report_lifestory_get_report_html($courseid, $userid),
         ];
     } else {
         $courses = enrol_get_users_courses($userid);
@@ -138,7 +138,7 @@ if ($userid) {
             $coursesdata[] = [
                 'id' => $course->id,
                 'fullname' => $course->fullname,
-                'reporthtml' => get_report_html($course->id, $userid),
+                'reporthtml' => report_lifestory_get_report_html($course->id, $userid),
             ];
         }
     }
@@ -218,7 +218,7 @@ echo $OUTPUT->footer();
  * @param int $userid The user ID.
  * @return string Rendered HTML for the grade report.
  */
-function get_report_html($courseid, $userid) {
+function report_lifestory_get_report_html($courseid, $userid) {
     global $OUTPUT;
 
     $coursecontext = context_course::instance($courseid);
