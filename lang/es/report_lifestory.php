@@ -44,6 +44,7 @@ $string['privacy:metadata:ai_provider:courseids'] = 'La lista de IDs de cursos e
 $string['privacy:metadata:ai_provider:coursenames'] = 'Los nombres de los cursos en los que el usuario está matriculado.';
 $string['privacy:metadata:ai_provider:fullname'] = 'El nombre completo del usuario para proporcionar contexto.';
 $string['privacy:metadata:ai_provider:userid'] = 'El ID del usuario cuyo historial académico se analiza.';
+$string['report_lifestory:generateaifeedback'] = 'Generar retroalimentación con IA sobre el desempeño del estudiante';
 $string['searchusers'] = 'Buscar usuarios';
 $string['select'] = 'Seleccionar';
 $string['selectuser'] = 'Por favor seleccione un usuario para ver su historia de vida';

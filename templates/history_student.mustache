@@ -62,12 +62,14 @@
 
             {{#hasuser}}
             <div class="d-flex align-items-center gap-2 ms-3 report_lifestory-actionbuttons">
+                {{#cangeneratefeedback}}
                 <a href="{{baseurl}}?userid={{userid}}&action=feedback"
-                   class="btn btn-primary me-2"
-                   id="btn-feedback-ai"
-                   data-loader-text="{{#str}} generatingfeedback, report_lifestory {{/str}}">
+                class="btn btn-primary me-2"
+                id="btn-feedback-ai"
+                data-loader-text="{{#str}} generatingfeedback, report_lifestory {{/str}}">
                     {{#str}} generatefeedback, report_lifestory {{/str}}
                 </a>
+                {{/cangeneratefeedback}}
                 <a href="{{baseurl}}?userid={{userid}}&action=csv"
                    class="btn btn-success"
                    id="btn-csv-export">

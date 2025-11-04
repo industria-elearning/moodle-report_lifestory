@@ -25,25 +25,26 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$string['clearselection'] = 'Clear';
+$string['clearselection'] = 'Clear selection';
 $string['error_ai_service'] = 'AI service error: {$a}';
-$string['error_airequest'] = 'Error communicating with the AI service: {$a}';
+$string['error_airequest'] = 'Error communicating with AI service: {$a}';
 $string['exportcsv'] = 'Export to CSV';
 $string['exportingcsv'] = 'Exporting CSV';
-$string['feedbackfromai'] = 'Feedback from AI';
-$string['generatefeedback'] = 'Generate feedback with AI';
+$string['feedbackfromai'] = 'AI feedback';
+$string['generatefeedback'] = 'Generate AI feedback';
 $string['generatingfeedback'] = 'Generating feedback';
 $string['lifestory'] = 'Student life story';
-$string['lifestory:view'] = 'View the Life Story report';
+$string['lifestory:view'] = 'View life story report';
 $string['noreportdata'] = 'No report data available.';
 $string['noresponse'] = 'No response received.';
-$string['pluginname'] = 'Student Life Story AI';
+$string['pluginname'] = 'AI Student Life Story';
 $string['privacy:metadata:ai_provider'] = 'Data is sent to the company’s AI system to generate feedback based on the student’s academic history.';
 $string['privacy:metadata:ai_provider:context'] = 'The context of the analysis (e.g., academic performance or reflection).';
-$string['privacy:metadata:ai_provider:courseids'] = 'The list of course IDs in which the user is enrolled.';
-$string['privacy:metadata:ai_provider:coursenames'] = 'The names of the courses in which the user is enrolled.';
+$string['privacy:metadata:ai_provider:courseids'] = 'List of course IDs in which the user is enrolled.';
+$string['privacy:metadata:ai_provider:coursenames'] = 'Names of the courses in which the user is enrolled.';
 $string['privacy:metadata:ai_provider:fullname'] = 'The user’s full name to provide context.';
-$string['privacy:metadata:ai_provider:userid'] = 'The ID of the user whose academic history is being analyzed.';
+$string['privacy:metadata:ai_provider:userid'] = 'The ID of the user whose academic history is analyzed.';
+$string['report_lifestory:generateaifeedback'] = 'Generate AI feedback on student performance';
 $string['searchusers'] = 'Search users';
 $string['select'] = 'Select';
 $string['selectuser'] = 'Please select a user to view their life story';
