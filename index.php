@@ -200,7 +200,7 @@ if ($userid && $action === 'feedback') {
 $renderer = $PAGE->get_renderer('core');
 $headerlogo = new \report_lifestory\output\header_logo();
 $logocontext = $headerlogo->export_for_template($renderer);
-$canGenerateFeedback = has_capability('report/lifestory:generateaifeedback', $context);
+$cangeneratefeedback = has_capability('report/lifestory:generateaifeedback', $context);
 
 $templatecontext = [
     'baseurl' => new moodle_url('/report/lifestory/index.php'),
@@ -214,7 +214,7 @@ $templatecontext = [
     'feedback' => $feedbackhtml,
     'showfeedback' => !empty($feedbackhtml),
     'headerlogo' => $logocontext,
-    'cangeneratefeedback' => $canGenerateFeedback,
+    'cangeneratefeedback' => $cangeneratefeedback,
 ];
 
 echo $OUTPUT->render_from_template('report_lifestory/history_student', $templatecontext);
