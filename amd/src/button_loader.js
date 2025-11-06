@@ -21,11 +21,13 @@
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+import * as Str from 'core/str';
+
 export const init = () => {
-    const buttons = document.querySelectorAll("[data-loader-text]");
+    const buttons = document.querySelectorAll("#btn-feedback-ai");
 
     buttons.forEach(button => {
-        button.addEventListener("click", e => {
+        button.addEventListener("click", async  e => {
             if (button.classList.contains('report_lifestory-btnloading')) {
                 e.preventDefault();
                 return;
@@ -33,10 +35,11 @@ export const init = () => {
 
             e.preventDefault();
 
-            const loaderText = button.dataset.loaderText;
             const redirect = button.href || button.dataset.redirect;
             const originalText = button.textContent.trim();
             button.dataset.originalText = originalText;
+
+            const loaderText = await Str.get_string('generatingfeedback', 'report_lifestory');
 
             // Show loader
             button.classList.add('report_lifestory-btnloading');
