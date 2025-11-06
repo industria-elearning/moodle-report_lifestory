@@ -33,7 +33,7 @@ export const init = () => {
 
             e.preventDefault();
 
-            const loaderText = button.dataset.loaderText || "Processing...";
+            const loaderText = button.dataset.loaderText;
             const redirect = button.href || button.dataset.redirect;
             const originalText = button.textContent.trim();
             button.dataset.originalText = originalText;

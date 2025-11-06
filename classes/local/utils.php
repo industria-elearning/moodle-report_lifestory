@@ -263,7 +263,16 @@ class utils {
      * @return void
      */
     public static function export_to_csv(array $payload): void {
-        $csv = "Curso,Sección,Actividad,Nota (%),Rango,Feedback\n";
+        // Translatable CSV headers using get_string().
+        $csv = sprintf(
+            "%s,%s,%s,%s,%s,%s\n",
+            get_string('course', 'report_lifestory'),
+            get_string('section', 'report_lifestory'),
+            get_string('activity', 'report_lifestory'),
+            get_string('gradepercent', 'report_lifestory'),
+            get_string('range', 'report_lifestory'),
+            get_string('feedback', 'report_lifestory')
+        );
 
         foreach ($payload['courses'] as $course) {
             $coursename = $course['name'];
@@ -279,7 +288,7 @@ class utils {
                         $task['name'],
                         $task['percentage'] ?? '-',
                         $task['range'] ?? '-',
-                        str_replace('"', '""', $task['feedback'] ?? ''),
+                        str_replace('"', '""', $task['feedback'] ?? '')
                     );
                 }
 
@@ -289,10 +298,10 @@ class utils {
                         "\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\"\n",
                         $coursename,
                         $sectionname,
-                        $total['name'] ?? 'Total',
+                        $total['name'] ?? get_string('total', 'report_lifestory'),
                         $total['percentage'] ?? '-',
                         $total['range'] ?? '-',
-                        str_replace('"', '""', $total['feedback'] ?? ''),
+                        str_replace('"', '""', $total['feedback'] ?? '')
                     );
                 }
             }
@@ -303,15 +312,15 @@ class utils {
                     "\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\"\n",
                     $coursename,
                     '',
-                    $total['name'] ?? 'Total del curso',
+                    $total['name'] ?? get_string('coursetotal', 'report_lifestory'),
                     $total['percentage'] ?? '-',
                     $total['range'] ?? '-',
-                    str_replace('"', '""', $total['feedback'] ?? ''),
+                    str_replace('"', '""', $total['feedback'] ?? '')
                 );
             }
         }
 
-        $filename = 'historial_' . $payload['student_id'] . '.csv';
+        $filename = 'history_' . $payload['student_id'] . '.csv';
         header('Content-Disposition: attachment; filename="' . $filename . '"');
         echo $csv;
     }

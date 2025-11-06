@@ -25,14 +25,20 @@
 
 defined('MOODLE_INTERNAL') || die();
 
+$string['activity'] = 'Activity';
+$string['altlogo'] = 'Datacurso logo';
 $string['clearselection'] = 'Clear selection';
+$string['course'] = 'Course';
+$string['coursetotal'] = 'Course total';
 $string['error_ai_service'] = 'AI service error: {$a}';
 $string['error_airequest'] = 'Error communicating with AI service: {$a}';
 $string['exportcsv'] = 'Export to CSV';
 $string['exportingcsv'] = 'Exporting CSV';
+$string['feedback'] = 'Feedback';
 $string['feedbackfromai'] = 'AI feedback';
 $string['generatefeedback'] = 'Generate AI feedback';
 $string['generatingfeedback'] = 'Generating feedback';
+$string['gradepercent'] = 'Grade (%)';
 $string['lifestory'] = 'Student life story';
 $string['lifestory:view'] = 'View life story report';
 $string['noreportdata'] = 'No report data available.';
@@ -44,8 +50,11 @@ $string['privacy:metadata:ai_provider:courseids'] = 'List of course IDs in which
 $string['privacy:metadata:ai_provider:coursenames'] = 'Names of the courses in which the user is enrolled.';
 $string['privacy:metadata:ai_provider:fullname'] = 'The user’s full name to provide context.';
 $string['privacy:metadata:ai_provider:userid'] = 'The ID of the user whose academic history is analyzed.';
+$string['range'] = 'Range';
 $string['report_lifestory:generateaifeedback'] = 'Generate AI feedback on student performance';
 $string['searchusers'] = 'Search users';
+$string['section'] = 'Section';
 $string['select'] = 'Select';
 $string['selectuser'] = 'Please select a user to view their life story';
+$string['total'] = 'Total';
 $string['unexpected_ai_error'] = 'Unexpected AI processing error: {$a}';

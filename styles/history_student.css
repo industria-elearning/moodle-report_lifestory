@@ -1,14 +1,14 @@
-/* ====== Header general ====== */
+/* ====== General header ====== */
 .report_lifestory-header {
     gap: 1rem;
 }
 
-/* ====== Selector de usuario ====== */
+/* ====== User selector ====== */
 .report_lifestory-userselect label {
     font-weight: 600;
 }
 
-/* ====== Botones de acción ====== */
+/* ====== Action buttons ====== */
 .report_lifestory-actionbuttons {
     display: flex;
     align-items: center;
@@ -29,7 +29,7 @@
     transform: scale(1.05);
 }
 
-/* ====== Feedback AI ====== */
+/* ====== AI Feedback ====== */
 .report_lifestory-feedbackcontent {
     white-space: normal;
     word-wrap: break-word;
@@ -41,9 +41,9 @@
     border-radius: 0.5rem;
 }
 
-/* ====== Ajuste visual de encabezados de Feedback IA ====== */
+/* ====== Visual adjustment of AI Feedback headers ====== */
 .report_lifestory-feedbackcontent h1 {
-    font-size: 1.6rem;     /* más compacto */
+    font-size: 1.6rem;
     margin-top: 1.25rem;
     margin-bottom: 0.75rem;
     color: #08415c;
@@ -84,7 +84,7 @@
     padding-left: 1.5rem;
 }
 
-/* ====== Loader genérico de botones ====== */
+/* ====== Generic button loader ====== */
 .report_lifestory-btnloading {
     position: relative;
     pointer-events: none;
@@ -111,7 +111,7 @@
     to { transform: rotate(360deg); }
 }
 
-/* ====== Responsive ajustes ====== */
+/* ====== Responsive adjustments ====== */
 @media (max-width: 768px) {
     .report_lifestory-pluginlogo {
         margin-top: 0.5rem;

@@ -215,6 +215,7 @@ $templatecontext = [
     'showfeedback' => !empty($feedbackhtml),
     'headerlogo' => $logocontext,
     'cangeneratefeedback' => $cangeneratefeedback,
+    'alttext' => get_string('altlogo', 'report_lifestory'),
 ];
 
 echo $OUTPUT->render_from_template('report_lifestory/history_student', $templatecontext);
