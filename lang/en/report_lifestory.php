@@ -40,6 +40,7 @@ $string['generatefeedback'] = 'Generate AI feedback';
 $string['generatingfeedback'] = 'Generating feedback';
 $string['gradepercent'] = 'Grade (%)';
 $string['lifestory'] = 'Student life story';
+$string['lifestory:generateaifeedback'] = 'Generate AI feedback for students';
 $string['lifestory:view'] = 'View life story report';
 $string['noreportdata'] = 'No report data available.';
 $string['noresponse'] = 'No response received.';

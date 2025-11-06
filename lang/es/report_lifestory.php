@@ -40,6 +40,7 @@ $string['generatefeedback'] = 'Genera feedback con IA';
 $string['generatingfeedback'] = 'Generando feedback';
 $string['gradepercent'] = 'Nota (%)';
 $string['lifestory'] = 'Historia de vida del estudiante';
+$string['lifestory:generateaifeedback'] = 'Generar retroalimentación con IA para los estudiantes';
 $string['lifestory:view'] = 'Vea el informe de la historia de vida';
 $string['noreportdata'] = 'No hay datos de informe disponibles.';
 $string['noresponse'] = 'No se recibió respuesta.';
