@@ -62,12 +62,13 @@
 
             {{#hasuser}}
             <div class="d-flex align-items-center gap-2 ms-3 report_lifestory-actionbuttons">
+                {{#cangeneratefeedback}}
                 <a href="{{baseurl}}?userid={{userid}}&action=feedback"
-                   class="btn btn-primary me-2"
-                   id="btn-feedback-ai"
-                   data-loader-text="{{#str}} generatingfeedback, report_lifestory {{/str}}">
-                    {{#str}} generatefeedback, report_lifestory {{/str}}
+                    class="btn btn-primary me-2"
+                    id="btn-feedback-ai">
+                        {{#str}} generatefeedback, report_lifestory {{/str}}
                 </a>
+                {{/cangeneratefeedback}}
                 <a href="{{baseurl}}?userid={{userid}}&action=csv"
                    class="btn btn-success"
                    id="btn-csv-export">
@@ -80,7 +81,7 @@
         {{#hasuser}}
         {{#headerlogo}}
         <a class="d-flex align-items-center ms-auto report_lifestory-logo" href="https://datacurso.com/" target="_blank" rel="noopener noreferrer">
-            <img src="{{logourl}}" alt="Logo Datacurso" class="report_lifestory-pluginlogo">
+            <img src="{{logourl}}" alt="{{alttext}}" class="report_lifestory-pluginlogo">
         </a>
         {{/headerlogo}}
         {{/hasuser}}
