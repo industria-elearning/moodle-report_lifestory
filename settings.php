@@ -26,14 +26,34 @@
 defined('MOODLE_INTERNAL') || die();
 
 if ($hassiteconfig) {
+
     $ADMIN->add('reports', new admin_category(
         'report_lifestory_cat',
         get_string('pluginname', 'report_lifestory')
     ));
 
     $ADMIN->add('report_lifestory_cat', new admin_externalpage(
-        'report_lifestory',
+        'report_lifestory_report',
         get_string('lifestory', 'report_lifestory'),
         new moodle_url('/report/lifestory/index.php')
     ));
+
+    // Página de configuración con textarea
+    $settings = new admin_settingpage(
+        'report_lifestory_settings',
+        get_string('lifestory_settings', 'report_lifestory')
+    );
+
+    // Agregar el textarea para la estructura de respuesta
+    $settings->add(new admin_setting_configtextarea(
+        'report_lifestory/response_structure',
+        get_string('response_structure', 'report_lifestory'),
+        get_string('response_structure_desc', 'report_lifestory'),
+        get_string('response_structure_default', 'report_lifestory'), 
+        PARAM_TEXT,
+        60,
+        10
+    ));
+
+    $ADMIN->add('report_lifestory_cat', $settings);
 }

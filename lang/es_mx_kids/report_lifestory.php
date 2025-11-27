@@ -59,3 +59,24 @@ $string['select'] = 'Seleccionar';
 $string['selectuser'] = 'Por favor seleccione un usuario para ver su historia de vida';
 $string['total'] = 'Total';
 $string['unexpected_ai_error'] = 'Error inesperado en el procesamiento de IA: {$a}';
+$string['response_structure'] = 'Estructura de respuesta';
+$string['response_structure_desc'] = 'Personaliza la estructura del prompt que se enviará a la IA para generar la historia de vida del estudiante.';
+$string['preferences_saved'] = 'Preferencias guardadas correctamente';
+$string['lifestory_settings'] = 'Configuración para historia de vida del estudiante';
+$string['response_structure_default'] = '🧠 PROMPT — STUDENT PERFORMANCE PROFILE (MOODLE)
+
+Analyze the following set of grades for a student from Moodle and generate a complete profile divided into stages. Use the data to identify strengths, weaknesses, temporal evolution, and personalized suggestions.
+
+Follow this exact output structure:
+
+1. Initial Stage: General Overview
+2. Intermediate Stage: Analysis by Areas or Categories
+3. Advanced Stage: Temporal Evolution
+4. Final Stage: Student Profile
+5. Feedback and Improvement Plan Stage
+
+Rules:
+- Use clear, empathetic, and positive language.
+- If data is missing, indicate it and suggest what information would be useful to add.
+- Maintain structured format by stages with visible subtitles.
+- Personalize the analysis based on the provided data.';
